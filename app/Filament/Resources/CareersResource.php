@@ -4,48 +4,45 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
-use App\Models\Events;
+use App\Models\Careers;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\Radio;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Illuminate\Database\Eloquent\Builder;
-use Filament\Forms\Components\DateTimePicker;
-use App\Filament\Resources\EventsResource\Pages;
+use App\Filament\Resources\CareersResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\EventsResource\RelationManagers;
+use App\Filament\Resources\CareersResource\RelationManagers;
 
-class EventsResource extends Resource
+class CareersResource extends Resource
 {
-    protected static ?string $model = Events::class;
-    protected static ?string $navigationGroup = 'Manajemen Navbar';
-    protected static ?string $navigationIcon = 'heroicon-o-megaphone';
+    protected static ?string $model = Careers::class;
+    protected static ?string $navigationGroup = 'Manajemen Lowongan';
+    protected static ?string $navigationIcon = 'heroicon-o-user-plus';
 
     public static function getPluralLabel(): string
     {
-        return 'Event & Acara';
+        return 'Careers';
     }
     public static function getLabel(): string
     {
-        return 'Event & Acara';
+        return 'Careers';
     }
-
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('title')
-                    ->label('Judul')
+                TextInput::make('position')
+                    ->label('Posisi')
                     ->required()
                     ->maxLength(255)
                     ->live(onBlur: true)
@@ -57,6 +54,16 @@ class EventsResource extends Resource
                     ->disabled()
                     ->dehydrated()
                     ->maxLength(255),
+                TextInput::make('department')
+                    ->label('Departemen / Devisi')
+                    ->required(),
+                Select::make('job_type')
+                    ->label('Status Perkerjaan')
+                    ->options([
+                        'full_time'             => 'Full_time',
+                        'part_time'             => 'Part_time',
+                        'internship'            => 'Internship',
+                    ]),
                 RichEditor::make('description')
                     ->label('Deskripsi')
                     ->required()
@@ -72,10 +79,11 @@ class EventsResource extends Resource
                         'codeBlock',
                         'undo',
                         'redo',
-                    ])->columnSpanFull()
+                    ])
+                    ->columnSpanFull()
                     ->required(),
-                RichEditor::make('ketentuan')
-                    ->label('Ketentuan')
+                RichEditor::make('requirements')
+                    ->label('Kualifikasi / Persyaratan')
                     ->required()
                     ->toolbarButtons([
                         'bold',
@@ -89,19 +97,11 @@ class EventsResource extends Resource
                         'codeBlock',
                         'undo',
                         'redo',
-                    ])->columnSpanFull()
+                    ])
+                    ->columnSpanFull()
                     ->required(),
-                DatePicker::make('start_date')
-                    ->label('Tanggal Mulai')
-                    ->native(false)
-                    ->displayFormat('d/m/Y')
-                    ->format('Y-m-d'),
-                DatePicker::make('end_date')
-                    ->label('Tanggal Selesai')
-                    ->native(false)
-                    ->displayFormat('d/m/Y')
-                    ->format('Y-m-d'),
-                FileUpload::make('thumbail')
+
+                FileUpload::make('image')
                     ->label('Upload Foto')
                     ->image()
                     ->directory('uploads')
@@ -110,12 +110,15 @@ class EventsResource extends Resource
                     ->required()
                     ->columnSpanFull()
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/jpg']),
-                TextInput::make('location')
-                    ->label('Lokasi')
-                    ->maxLength(255),
-                TextInput::make('link')
-                    ->label('Link informasi')
-                    ->maxLength(255),
+                TextInput::make('benefits')
+                    ->label('Benefit')
+                    ->required(),
+                DatePicker::make('deadline')
+                    ->label('Batas Pendaftaran')
+                    ->native(false)
+                    ->required()
+                    ->displayFormat('d/m/Y')
+                    ->format('Y-m-d'),
                 Toggle::make('is_active')
                     ->label('Aktifkan postingan?')
                     ->onColor('success')
@@ -142,45 +145,38 @@ class EventsResource extends Resource
                     )
                     ->sortable()
                     ->wrap(),
-                TextColumn::make('thumbail')
+                TextColumn::make('image')
                     ->label('FOTO')
                     ->badge()
                     ->formatStateUsing(fn($state) => $state ? 'Preview' : '-')
                     ->icon(fn(bool $state): string => $state ? 'heroicon-o-eye' : 'heroicon-o-eye')
-                    ->url(fn($record) => $record->thumbail ? asset('storage/' . $record->thumbail) : null)
+                    ->url(fn($record) => $record->thumbail ? asset('storage/' . $record->image) : null)
                     ->openUrlInNewTab(),
-                TextColumn::make('title')
-                    ->label('JUDUL')
-                    ->searchable(),
+                TextColumn::make('position')
+                    ->label('POSISI'),
+                TextColumn::make('department')
+                    ->label('DEPARTEMEN'),
                 TextColumn::make('description')
                     ->label('DESKRIPSI')
                     ->limit(30)
                     ->tooltip(fn($state) => $state)
                     ->wrap(),
-                TextColumn::make('start_date')
-                    ->label('MULAI')
+                TextColumn::make('requirements')
+                    ->label('PERSYARATAN')
+                    ->limit(30)
+                    ->tooltip(fn($state) => $state)
+                    ->wrap(),
+                TextColumn::make('job_type')
+                    ->label('TIPE')
+                    ->badge(),
+                TextColumn::make('deadline')
+                    ->label('BATAS')
                     ->formatStateUsing(
                         fn($state) =>
                         Carbon::parse($state)
                             ->locale('id')
                             ->translatedFormat('d F Y')
-                    )
-                    ->sortable(),
-                TextColumn::make('end_date')
-                    ->label('SELESAI')
-                    ->formatStateUsing(
-                        fn($state) =>
-                        Carbon::parse($state)
-                            ->locale('id')
-                            ->translatedFormat('d F Y')
-                    )
-                    ->sortable(),
-                TextColumn::make('is_active')
-                    ->label('STATUS')
-                    ->badge()
-                    ->color(fn(bool $state): string => $state ? 'success' : 'danger')
-                    ->formatStateUsing(fn(bool $state): string => $state ? 'Aktif' : 'Nonaktif')
-                    ->icon(fn(bool $state): string => $state ? 'heroicon-o-check-circle' : 'heroicon-o-x-circle')
+                    ),
             ])
             ->filters([
                 //
@@ -206,9 +202,9 @@ class EventsResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListEvents::route('/'),
-            'create' => Pages\CreateEvents::route('/create'),
-            'edit' => Pages\EditEvents::route('/{record}/edit'),
+            'index' => Pages\ListCareers::route('/'),
+            'create' => Pages\CreateCareers::route('/create'),
+            'edit' => Pages\EditCareers::route('/{record}/edit'),
         ];
     }
 }

@@ -1,10 +1,10 @@
 
-    <div class="grid grid-cols-1 md:grid-cols-4 lg::grid-cols-3 gap-5 mb-10">
+    <div class="grid grid-cols-1 md:grid-cols-3  gap-10 mb-10">
         @forelse ($promos as $item)
             <div
                 class="mb-5 rounded-md shadow-lg hover:shadow-sm transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 flex flex-col justify-between">
                 <div>
-                    <img src="{{ asset('storage/' . $item->image) }}" class="w-full rounded-t-lg" alt="" />
+                    <img src="{{ asset('storage/' . $item->image) }}" class="w-full h-96 rounded-t-lg" alt="" />
                     <div class="px-3 py-4 mb-1">
                         <h1 class="text-lg text-center text-gray-700 font-semibold ">
                             {{ $item->title }}

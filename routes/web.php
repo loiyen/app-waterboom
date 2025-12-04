@@ -8,10 +8,12 @@ use App\Http\Controllers\frontend\BerandaController;
 use App\Http\Controllers\frontend\JelajahController;
 use App\Http\Controllers\frontend\PaymentTiketRegular;
 use App\Http\Controllers\backend\ReportPrintController;
+use App\Http\Controllers\frontend\AboutController;
 use App\Http\Controllers\frontend\TiketGroupController;
 use App\Http\Controllers\frontend\HistoryUserController;
 use App\Http\Controllers\frontend\TiketRegularController;
 use App\Http\Controllers\frontend\CheckoutTiketController;
+use App\Http\Controllers\frontend\EventController;
 
 Route::get('/', [BerandaController::class, 'index'])->name('beranda.utama');
 //
@@ -59,12 +61,21 @@ Route::get('/detail-promo/{slug}', [PromoController::class, 'detailPromo'])->nam
 Route::get('/promo-load', [PromoController::class, 'loadMore'])->name('promo.load');
 Route::get('/filter/promo', [PromoController::class, 'filterPromo'])->name('promo.filter');
 
+//acara
+Route::get('/acara', [EventController::class, 'index'])->name('event.page');
+Route::get('/acara-detail/{slug}',[EventController::class, 'Detail'])->name('event.detail');
+Route::get('/acara-search', [EventController::class, 'search'])->name('event.search');
+
 //blog
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.page');
 Route::get('/blog/search', [BlogController::class, 'search'])->name('blog.search');
 Route::get('/blog-load', [BlogController::class, 'loadMore'])->name('blog.load');
 Route::get('/blog-detail/{slug}', [BlogController::class, 'detail'])->name('detail.blog');
 
+//tentang-kami 
+Route::get('/waterboom/tentang-kami', [AboutController::class, 'index'])->name('about.tentangkami');
+Route::get('/Pengumuman/careers', [AboutController::class, 'careers'])->name('about.careers');
+Route::get('/pengumuman/detail-careers/{slug}',[AboutController::class, 'careers_detail'])->name('detail.careers');
 
 //filamnt 
 Route::get('/print/orders', [ReportPrintController::class, 'print_order'])->name('print.orders');

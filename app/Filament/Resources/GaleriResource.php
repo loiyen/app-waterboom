@@ -32,11 +32,11 @@ class GaleriResource extends Resource
 
     public static function getPluralLabel(): string
     {
-        return 'Galeri'; 
+        return 'Galeri';
     }
     public static function getLabel(): string
     {
-        return 'Galeri'; 
+        return 'Galeri';
     }
 
     public static function form(Form $form): Form
@@ -54,6 +54,9 @@ class GaleriResource extends Resource
                         'penghargaan dan prestasi' => 'Penghargaan dan prestasi',
                         'partner'       => 'Partner',
                         'checkout'      => 'checkout',
+                        'group' => 'Group',
+                        'acara' => 'Acara',
+                        'promo' => 'Promo',
                     ]),
                 TextInput::make('title')
                     ->label('Judul'),

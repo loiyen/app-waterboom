@@ -15,6 +15,9 @@ class Events extends Model
         'slug',
         'thumbail',
         'description',
+        'ketentuan',
+        'location',
+        'link',
         'start_date',
         'end_date',
         'is_active'

@@ -22,12 +22,13 @@ class JelajahController extends Controller
     {
 
         $data = $this->jelajahService->getDataCategory($slug);
-
+    
         return view('frontend.page.explorePage', [
             'title'     => 'Jelajah || Waterboom Jogja',
             'kategori'  => $data['kategori'],
             'places'    => $data['place'],
             'total'     => $data['total'],
+            'banner'    => $data['banner']
         ]);
     }
 

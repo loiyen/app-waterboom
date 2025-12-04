@@ -6,13 +6,15 @@ use Illuminate\Http\Request;
 use App\Services\BlogService;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Models\News;
+use App\Services\TfidfService;
 
 class BlogController extends Controller
 {
 
     protected $blogService;
 
-    public function __construct(BlogService $blogService)
+    public function __construct(BlogService $blogService,)
     {
         $this->blogService = $blogService;
     }
@@ -20,8 +22,6 @@ class BlogController extends Controller
     public function index()
     {
         $data = $this->blogService->getData();
-
-       
 
         return view('frontend.page.blogPage', [
             'title'                     => 'Blog || Waterboom Jogja',
@@ -31,15 +31,51 @@ class BlogController extends Controller
         ]);
     }
 
-    public function detail($slug)
+    public function detail($slug, TfidfService $tfidfService)
     {
         try {
             $data = $this->blogService->getDetail($slug);
 
+            // Berita saat ini (object)
+            $currentNews = $data['detail'];
+            $currentId   = $currentNews->id;
+
+            // Ambil semua berita kecuali berita saat ini
+            $allNews = News::where('id', '!=', $currentId)->get();
+
+            // Ambil isi konten semua berita
+            $documents = $allNews->pluck('content')->toArray();
+
+            // Hitung TF-IDF semua dokumen
+            $tfidfDocs = $tfidfService->compute($documents);
+
+            // Hitung TF-IDF untuk berita saat ini
+            $currentTfidf = $tfidfService->compute([$currentNews->content])[0];
+
+            // Hitung similarity
+            $similarity = [];
+            foreach ($tfidfDocs as $index => $vec) {
+                $similarity[$index] = $tfidfService->cosineSimilarity($currentTfidf, $vec);
+            }
+
+            // Urutkan berdasarkan kemiripan dari paling tinggi
+            arsort($similarity);
+
+            // Ambil 5 berita teratas sebagai rekomendasi
+            $related = collect($similarity)
+                ->take(5)
+                ->map(function ($score, $index) use ($allNews) {
+                    return [
+                        'news'  => $allNews[$index],
+                        'score' => $score
+                    ];
+                });
+
             return view('frontend.page.blogPageDetail', [
-                'title'                 => 'Detail || Waterboom Jogja',
-                'berita'                => $data['detail'],
-                'berita_lain'           => $data['news_other'],
+                'title'         => 'Detail || Waterboom Jogja',
+                'berita'        => $currentNews,
+                'berita_lain'   => $data['news_other'],  // original
+                'related_news'  => $related,             // rekomendasi TF-IDF
             ]);
         } catch (\Exception $e) {
             Log::error('Gagal memuat detail blog: ' . $e->getMessage());
@@ -47,35 +83,6 @@ class BlogController extends Controller
         }
     }
 
-    // public function search(Request $request)
-    // {
-    //     $validated = $request->validate([
-    //         'q' => 'nullable|string'
-    //     ]);
-
-    //     if (!$validated['q']) {
-    //         return redirect()->route('blog.page'); // kembalikan ke halaman biasa
-    //     }
-
-    //     try {
-    //         $berita = $this->blogService->getPencarian(
-    //             $validated['q'] ?? '',
-    //         );
-
-    //         $data = $this->blogService->getData();
-
-    //         return view('frontend.page.partial.blog_list', [
-    //             'title'                     => 'Blog || Waterboom Jogja',
-    //             'berita'                    => $berita,
-    //             'berita_lain'               => $data['news_other'],
-    //             'berita_slider'             => $data['berita_slider']
-    //         ]);
-    //     } catch (\Exception $e) {
-
-    //         Log::error('Filter Promo Error: ' . $e->getMessage());
-    //         return response()->json(['error' => 'Gagal memuat data'], 500);
-    //     }
-    // }
 
     public function search(Request $request)
     {
@@ -83,8 +90,14 @@ class BlogController extends Controller
             'q' => 'nullable|string'
         ]);
 
-        if (!$validated['q']) {
-            return redirect()->route('blog.page');
+       
+        if (empty($validated['q'])) {
+
+            $berita = News::orderBy('created_at', 'desc')->paginate(8);
+
+            return view('frontend.page.partial.blog_list', [
+                'berita' => $berita
+            ])->render();
         }
 
         try {
@@ -94,7 +107,7 @@ class BlogController extends Controller
                 'berita' => $berita
             ])->render();
         } catch (\Exception $e) {
-            Log::error('Filter Promo Error: ' . $e->getMessage());
+            Log::error('Filter Blog Error: ' . $e->getMessage());
             return response()->json(['error' => 'Gagal memuat data'], 500);
         }
     }

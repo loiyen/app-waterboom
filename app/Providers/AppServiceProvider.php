@@ -38,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
             return CategoryPlaces::select('id', 'name', 'slug')->with('place')->get();
         });
 
+        // dd($kategori_jelajah);
 
         View::share('kategori_jelajah', $kategori_jelajah);
 

@@ -3,12 +3,15 @@
 @section('container')
     @include('frontend.partial.navbar')
 
-    <div class="container mx-auto max-w-6xl lg:mt-18 sm:mt-16 mb-10">
+    <div class="container mx-auto max-w-6xl lg:mt-32 mt-16 mb-10">
         <div class="mb-5">
-            <img src="{{ asset('img/water1.jpeg') }}" class="w-full md:h-80 object-cover" alt="" />
+            <img src="{{ asset('storage/'.$banner->first()->image) }}" class="w-full md:h-80 object-cover" alt="" />
         </div>
         <div class="mb-5 px-4 flex justify-center md:justify-start text-gray-700">
-            <h1 class="hover:text-blue-700 text-xs cursor-pointer">Beranda</h1>
+            <a href="/">
+                <h1 class="hover:text-blue-700 text-xs cursor-pointer">Beranda</h1>
+            </a>
+
             <h1 class="text-xs font-semibold">
                 <i class="fa fa-angle-right text-gray-400 px-2"></i> Wahana
             </h1>
@@ -27,7 +30,8 @@
         </div>
         <div class="">
             <div class="flex flex-col md:flex-row justify-start md:justify-between md:items-center mb-10">
-                <h1 class="font-semibold text-xs md:text-sm text-gray-700 mb-3 md:mb-0"> {{ $total }} {{ $kategori->name }}
+                <h1 class="font-semibold text-xs md:text-sm text-gray-700 mb-3 md:mb-0"> {{ $total }}
+                    {{ $kategori->name }}
                 </h1>
                 <div class="relative w-full md:w-96">
                     <input
@@ -60,7 +64,7 @@
                 .then(res => res.text())
                 .then(html => {
                     resultList.innerHTML = html;
-                    attachPaginationLinks(); 
+                    attachPaginationLinks();
                 })
                 .catch(err => console.error(err));
         }
@@ -86,6 +90,6 @@
         attachPaginationLinks();
     </script>
 
-    @include('frontend.partial.service')
+    {{-- @include('frontend.partial.service') --}}
     @include('frontend.partial.footer')
 @endsection

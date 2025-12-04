@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->string('thumbail')->nullable();
             $table->longText('description')->nullable();
+            $table->longText('ketentuan')->nullable();
+            $table->string('location')->nullable();
+            $table->string('link')->nullable();
             $table->datetime('start_date')->nullable();
             $table->datetime('end_date')->nullable();
             $table->boolean('is_active')->default(false);;

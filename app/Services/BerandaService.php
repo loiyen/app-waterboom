@@ -15,6 +15,7 @@ class BerandaService
     {
         $news = News::with('user')->where('is_active', 1)
             ->inRandomOrder()
+
             ->limit(3)
             ->get();
 
@@ -27,14 +28,17 @@ class BerandaService
 
         $place = Places::with('categoryplace')
             ->inRandomOrder()
-            ->limit(7)
+            ->limit(5)
             ->get();
 
-        $event = Events::where('is_active', 1)->get();
+        $event = Events::where('is_active', 1)
+            ->orderBy('created_at', 'desc')
+            ->limit(5)
+            ->get();
 
         $promo = Promos::where('is_active', 1)
-            ->limit(7)
-            ->latest()
+            ->limit(5)
+            ->orderBy('created_at', 'desc')
             ->get();
 
         $category_jelajah = CategoryPlaces::with('place')->get();

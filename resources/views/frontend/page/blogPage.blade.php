@@ -11,20 +11,20 @@
                         <a href="{{ route('detail.blog', $item->slug) }}">
                             <div class="h-96 md:h-96 overflow-hidden shadow-md relative group">
                                 <img src="{{ $item->getFirstMediaUrl('news-images') }}" alt="Slide   1"
-                                    class="w-full h-full object-cover" />
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                                 <div class="absolute mt-72 left-0 inset-0 bg-black/40 flex justify-center items-center">
                                     <span class="text-white text-lg md:text-2xl">
                                         <h1 class="font-bold text-center mb-2 px-3">
                                             {{ $item->title }}
                                         </h1>
-                                        <div class="flex justify-center gap-2">
+                                        {{-- <div class="flex justify-center gap-2">
                                             <h5 class="text-xs text-center">
                                                 <i class="fa fa-user"></i> {{ $item->user->name }}
                                             </h5>
                                             <h5 class="text-xs text-center">
                                                 <i class="fa fa-calendar"></i> {{ format_tanggal($item->created_at) }}
                                             </h5>
-                                        </div>
+                                        </div> --}}
                                     </span>
                                 </div>
                             </div>
@@ -75,7 +75,6 @@
                     <i class="fa fa-search"></i>
                 </span>
             </div>
-
         </div>
 
         <div class="flex flex-col md:flex-row gap-5">
@@ -91,11 +90,12 @@
                 <div class="flex flex-col gap-2">
                     @foreach ($berita_lain as $item)
                         <div class="w-full rounded-lg border hover:shadow-md mb-5">
-                            <div>
-                                <img src="{{ $item->getFirstMediaUrl('news-images') }}" class="object-cover rounded-t-md"
+                            <div class="overflow-hidden shadow-md relative group">
+                                <img src="{{ $item->getFirstMediaUrl('news-images') }}"
+                                    class="object-cover rounded-t-md transition-transform duration-500 group-hover:scale-110 "
                                     alt="" />
                             </div>
-                            <div class="px-4 py-3">
+                            <div class="px-4 py-4">
                                 <a href="{{ route('detail.blog', $item->slug) }}">
                                     <h1 class="text-lg hover:text-blue-700 font-semibold mb-3 text-gray-700">
                                         {{ $item->title }}
@@ -110,20 +110,28 @@
 
     </div>
 
-    <script>
+    {{-- <script>
         $(document).ready(function() {
+
             let typingTimer;
             let delay = 500;
             let isLoading = false;
-
 
             $('#search-input').on('keypress', function(e) {
                 if (e.which === 13) e.preventDefault();
             });
 
+
             $('#search-input').on('keyup', function() {
+
                 clearTimeout(typingTimer);
-                let query = $(this).val();
+                let query = $(this).val().trim();
+
+
+                if (query === "") {
+                    $('#berita-container').html(response);
+                    return;
+                }
 
                 typingTimer = setTimeout(function() {
                     if (isLoading) return;
@@ -135,6 +143,7 @@
                         data: {
                             q: query
                         },
+
                         beforeSend: function() {
                             $('#berita-container').html(`
                         <div class="flex justify-center py-10">
@@ -143,29 +152,111 @@
                         <p class="text-center text-gray-500 mt-3">Memuat data...</p>
                     `);
                         },
+
                         success: function(response) {
                             $('#berita-container').html(response);
                         },
+
                         complete: function() {
                             isLoading = false;
                         },
-                        error: function(xhr) {
-                            $('#berita-container').html(
-                                '<p class="text-red-500 p-4">Terjadi kesalahan.</p>'
-                            );
+
+                        error: function() {
+                            $('#berita-container').html(`
+                        <p class="text-red-500 p-4 text-center">
+                            Terjadi kesalahan memuat data.
+                        </p>
+                    `);
                         }
                     });
+
                 }, delay);
+
             });
 
+            // Pagination AJAX (TETAP)
             $(document).on('click', '.pagination a', function(e) {
                 e.preventDefault();
                 let url = $(this).attr('href');
+
                 $.get(url, function(response) {
                     let html = $(response).find('#berita-container').html();
                     $('#berita-container').html(html);
                 });
             });
+
+        });
+    </script> --}}
+
+    <script>
+        $(document).ready(function() {
+
+            let typingTimer;
+            let delay = 500;
+            let isLoading = false;
+
+            $('#search-input').on('keypress', function(e) {
+                if (e.which === 13) e.preventDefault();
+            });
+
+            $('#search-input').on('keyup', function() {
+
+                clearTimeout(typingTimer);
+                let query = $(this).val().trim();
+
+                typingTimer = setTimeout(function() {
+                    if (isLoading) return;
+                    isLoading = true;
+
+                    $.ajax({
+                        url: "{{ route('blog.search') }}",
+                        type: 'GET',
+                        data: {
+                            q: query
+                        },
+
+                        beforeSend: function() {
+                            $('#berita-container').html(`
+                    <div class="flex justify-center py-10">
+                        <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+                    </div>
+                    <p class="text-center text-gray-500 mt-3">Memuat data...</p>
+                `);
+                        },
+
+                        success: function(response) {
+                            $('#berita-container').html(response);
+                        },
+
+                        complete: function() {
+                            isLoading = false;
+                        },
+
+                        error: function() {
+                            $('#berita-container').html(`
+                    <p class="text-red-500 p-4 text-center">
+                        Terjadi kesalahan memuat data.
+                    </p>
+                `);
+                        }
+                    });
+
+                }, delay);
+
+            });
+
+            $(document).on('click', '.pagination a', function(e) {
+                e.preventDefault();
+                let url = $(this).attr('href');
+
+                $.get(url, function(response) {
+                    let html = $(response).find('#berita-container').html();
+                    $('#berita-container').html(html);
+                });
+            });
+
         });
     </script>
+
+    @include('frontend.partial.footer')
 @endsection

@@ -61,7 +61,7 @@ if (!function_exists('format_tanggal_indo')) {
     $y = date('Y', $tgl);
     $jam = date('H:i', $tgl); // format 24 jam (contoh: 14:35)
 
-    return $d . ' ' . $bulanIndo[$m] . ' ' . $y . ' • ' . $jam . ' WIB';
+    return $d . ' ' . $bulanIndo[$m] . ' ' . $y . ' - ' . $jam . ' WIB';
 }
 
 }

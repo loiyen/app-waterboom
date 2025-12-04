@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('abouts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->string('title');
-            $table->string('slug')->nullable();
-            $table->string('summary')->nullable();
+            $table->string('title')->nullable();
             $table->longText('content')->nullable();
-            $table->enum('kategori', ['tiket', 'acara', 'event', 'promosi', 'wahana', 'resto'])->default('tiket');
-            $table->boolean('is_active')->nullable();
+            $table->enum('sub_content',['waterboom','visi','misi','feature'])->default('waterboom')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('abouts');
     }
 };

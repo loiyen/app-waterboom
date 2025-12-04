@@ -10,38 +10,38 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-center md:text-start">
-            <div>
-                <h1 class="text-sm font-semibold mb-2">Tentang</h1>
-                <ul class="text-xs space-y-1">
-                    @foreach ($kategori_jelajah as $item)
-                        <a href="{{ route('jelajah.category', $item->slug) }}">
-                            <li class="py-1 cursor-pointer hover:text-blue-400"> {{ $item->name }}</li>
-                        </a>
-                    @endforeach
-                </ul>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-center md:text-start">
+            <div class="w-full flex justify-center">
+                <div>
+                    <img src="{{ asset('img/logo-base.png') }}" class="w-52" alt="">
+                    
+                </div>
             </div>
-            <div>
-                <h1 class="text-sm font-semibold mb-2">Tiket & Harga</h1>
-                <ul class="text-xs space-y-1">
-                    <a href="{{ route('tiket.checkout') }}">
-                        <li class="py-1 cursor-pointer hover:text-blue-400">Tiket & Harga</li>
-                    </a>
-                    <a href="{{ route('group.info') }}">
-                        <li class="py-1 cursor-pointer hover:text-blue-400">Group</li>
-                    </a>
+            <div class="w-full flex gap-5">
+                <div class="flex-1">
+                    <h1 class="text-sm font-semibold mt-1">Tentang</h1>
+                    <ul class="text-xs space-y-1">
+                        @foreach ($kategori_jelajah as $item)
+                            <li class="py-1 hover:text-blue-400 text-gray-600">
+                                <a href="{{ route('jelajah.category', $item->slug) }}">
+                                    {{ $item->name }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
 
-                </ul>
-            </div>
-            <div>
-                <a href="{{ route('promo.page') }}" class="text-sm font-semibold mb-2">
-                    Promo
-                </a>
-            </div>
-            <div>
-                <a href="{{ route('blog.page') }}" class="text-sm font-semibold mb-2">
-                    Blog
-                </a>
+                <div class="flex-1">
+                    <a href="{{ route('promo.page') }}" class="text-sm hover:text-blue-600 font-semibold">Promo</a>
+                </div>
+
+                <div class="flex-1">
+                    <a href="{{ route('blog.page') }}" class="text-sm hover:text-blue-600 font-semibold">Berita</a>
+                </div>
+
+                <div class="flex-1">
+                    <a href="{{ route('group.info') }}" class="text-sm hover:text-blue-600 font-semibold">Group</a>
+                </div>
             </div>
         </div>
 
@@ -50,10 +50,13 @@
             <h1 class="text-sm font-semibold">Sosial Media</h1>
             <div class="flex gap-4">
                 <a href="#" class="hover:scale-110 transition">
-                    <img src="{{ asset('img/ig.png') }}" class="w-7 h-7" alt="Instagram" />
+                    <img src="{{ asset('img/ig1.png') }}" class="w-7 h-7" alt="Instagram" />
                 </a>
                 <a href="#" class="hover:scale-110 transition">
-                    <img src="{{ asset('img/tik.png') }}" class="w-7 h-7" alt="Tiktok" />
+                    <img src="{{ asset('img/t1.png') }}" class="w-7 h-7" alt="Tiktok" />
+                </a>
+                <a href="#" class="hover:scale-110 transition">
+                    <img src="{{ asset('img/y1.png') }}" class="w-7 h-7" alt="youtube" />
                 </a>
             </div>
         </div>

@@ -5,7 +5,7 @@
 
     <div class="container mx-auto max-w-6xl lg:mt-32 sm:mt-16 mb-10">
         <div class="mb-5">
-            <img src="{{ asset('img/water1.jpeg') }}" class="w-full md:h-80 object-cover" alt="" />
+            <img src="{{ asset('storage/'.$banner->first()->image) }}" class="w-full md:h-80 object-cover" alt="" />
         </div>
         <div class="text-start px-4 flex justify-center md:justify-start text-gray-700">
             <a href="/">
@@ -36,12 +36,12 @@
                 <button
                     class="filter-btn flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white px-5 py-2 rounded-full shadow-lg hover:from-white hover:to-white hover:text-blue-600 hover:border-blue-600 border transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 {{ $status == 'tiket' ? 'bg-blue-500 text-white' : '' }}"
                     data-status="tiket">
-                    Tiket <span class="font-semibold text-sm"> {{ $countByCategory['tiket'] ?? 0 }}</span> 
+                    Tiket <span class="font-semibold text-sm"> {{ $countByCategory['tiket'] ?? 0 }}</span>
                 </button>
                 <button
                     class="filter-btn flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white px-5 py-2 rounded-full shadow-lg hover:from-white hover:to-white hover:text-blue-600 hover:border-blue-600 border transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 {{ $status == 'resto' ? 'bg-blue-500 text-white' : '' }}"
                     data-status="resto">
-                    Resto <span class="font-semibold text-sm"> {{ $countByCategory['resto'] ?? 0 }}</span>  
+                    Resto <span class="font-semibold text-sm"> {{ $countByCategory['resto'] ?? 0 }}</span>
                 </button>
             </div>
         </div>
@@ -61,8 +61,6 @@
                     'promos' => $promos,
                 ])
             </div>
-
-
         </div>
     </div>
 
@@ -88,7 +86,7 @@
                     .then(res => res.text())
                     .then(html => {
                         promoContainer.innerHTML = html;
-                        
+
                         buttons.forEach(btn => btn.classList.remove('bg-blue-500', 'text-white'));
                         document.querySelector(`[data-status="${status}"]`)?.classList.add('bg-blue-500',
                             'text-white');
@@ -118,4 +116,6 @@
             });
         });
     </script>
+
+    @include('frontend.partial.service')
 @endsection

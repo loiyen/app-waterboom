@@ -44,6 +44,7 @@ class PromoController extends Controller
             'totalAll' => $data['totalAll'],
             'status' => $data['status'],
             'totalFiltered' => $data['promos']->total(),
+            'banner'        => $data['banner']
         ]);
     }
 

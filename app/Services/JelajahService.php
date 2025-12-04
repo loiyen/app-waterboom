@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\CategoryPlaces;
+use App\Models\Galleries;
 use App\Models\Places;
 use Illuminate\Support\Facades\Request;
 
@@ -14,6 +15,8 @@ class JelajahService
 
         $data_category = CategoryPlaces::where('slug', $slug)->firstOrFail();
 
+        $data_banner = Galleries::where('category', 'checkout')->get();
+
         $place  = Places::with('categoryplace')->where('category_place_id', $data_category->id)->paginate(8);
 
         $total  = Places::where('category_place_id', $data_category->id)->count();
@@ -21,7 +24,8 @@ class JelajahService
         return [
             'kategori'      => $data_category,
             'place'         => $place,
-            'total'         => $total
+            'total'         => $total,
+            'banner'        => $data_banner
         ];
     }
 

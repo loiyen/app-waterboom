@@ -4,12 +4,12 @@
              <a href="{{ route('jelajah.detail', $item->slug) }}">
                  <div class="mb-5 md:mb-0  border rounded-lg shadow-lg hover:shadow-sm transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
                      data-category="seluncuran">
-                     <div class="mb-5">
+                     <div class="mb-5 w-full h-52">
                          <img src="{{ $item->getFirstMediaUrl('places-images') }}" alt="{{ $item->title }}"
-                             class="w-full h-52 rounded-t-md object-cover" />
+                             class="w-full h-full rounded-t-md object-cover" />
                      </div>
                      <div class="mb-5 px-4">
-                         <h1 class="text-sm font-semibold text-gray-700">{{ $item->name }}</h1>
+                         <h1 class="text-sm md:text-base font-semibold text-gray-700">{{ $item->name }}</h1>
                      </div>
                      <div class="mb-5 px-4 text-xs md:text-sm">
                          <div class="flex justify-between border rounded-md shadow-sm py-4 px-6">

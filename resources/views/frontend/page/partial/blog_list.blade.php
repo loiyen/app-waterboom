@@ -1,23 +1,25 @@
  <div class="w-full flex flex-col mb-5 md:mb-0">
-
      @forelse ($berita as $item)
-         <div class="w-full h-auto mb-5 border rounded-md shadow-md flex align-center">
+         <div class="w-full h-auto mb-8  rounded-md  flex align-center">
              <div class="md:flex">
-                 <div class="md:w-64 h-auto">
+                 <div class="md:w-80 h-auto overflow-hidden shadow-md relative group">
                      <img src="{{ $item->getFirstMediaUrl('news-images') }}" alt="{{ $item->title }}"
-                         alt="{{ $item->title }}" class="w-full h-48 object-cover rounded-md">
+                         alt="{{ $item->title }}" class="w-full h-48 object-cover rounded-md transition-transform duration-500 group-hover:scale-110">
                  </div>
-                 <div class="w-full">
-                     <h1 class="px-3 mt-4 font-semibold text-lg text-gray-700">
-                         {{ $item->title }}
+                 <div class="w-full md:px-5">
+                     <h1 class="text-sm rounded-md text-blue-800 font-semibold mt-3 md:mt-0">Tiket</h1>
+                     <a href="{{ route('detail.blog', $item->slug) }}">
+                         <h1 class="hover:text-blue-800 cursor-pointer mt-4 font-semibold text-lg text-gray-700">
+                             {{ $item->title }}
+                         </h1>
+                     </a>
+                     <h1 class="leading-normal mt-2 mb-4 text-xs md:text-sm text-justify text-gray-700">
+                         {{ $item->summary }}
                      </h1>
-                     <h1 class="leading-normal mt-2 mb-4 px-3 text-xs md:text-sm text-justify text-gray-700">
-                         {{ $item->summary }}...
-                     </h1>
-                     <div class="px-3 mb-5 items-center flex justify-between text-xs">
+                     
+                     {{-- <div class="mb-5 items-center flex justify-between text-xs">
                          <div>
-                             <a href="{{ route('detail.blog', $item->slug) }}"
-                                 class="text-gray-700 hover:underline hover:text-blue-700">LIhat lebih banyak</a>
+
                          </div>
                          <div class="flex justify-center text-gray-700 gap-2">
                              <h5 class="text-xs text-center">
@@ -27,7 +29,8 @@
                                  <i class="fa fa-calendar"></i> {{ format_tanggal($item->created_at) }}
                              </h5>
                          </div>
-                     </div>
+                     </div> --}}
+
                  </div>
              </div>
          </div>
@@ -49,5 +52,3 @@
          {{ $berita->links('pagination::tailwind') }}
      </div>
  @endif
-
-

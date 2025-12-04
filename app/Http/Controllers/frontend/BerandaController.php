@@ -35,12 +35,12 @@ class BerandaController extends Controller
     public function search(Request $request)
     {
         $request->validate([
-            'q'     => 'required|string'
+            'q' => 'required|string|min:1|max:100'
         ]);
 
-        $key    = $request->get('q');
+        $key = trim(strip_tags($request->q));
 
-        if (!$key) {
+        if ($key === '') {
             return response()->json(['error' => 'Kata kunci tidak boleh kosong'], 422);
         }
 
@@ -49,7 +49,7 @@ class BerandaController extends Controller
         return response()->json([
             'place' => $result['place'] ?? [],
             'blog'  => $result['blog'] ?? [],
-            'promo'  => $result['promo'] ?? [],
+            'promo' => $result['promo'] ?? [],
         ]);
     }
 }

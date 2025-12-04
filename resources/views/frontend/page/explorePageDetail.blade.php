@@ -2,11 +2,11 @@
 @section('container')
     @include('frontend.partial.navbar')
 
-    <div class="container mx-auto max-w-6xl lg:mt-32 sm:mt-16 mb-10">
-        <div class="mb-5">
+    <div class="container mx-auto max-w-6xl md:mt-32 mt-24 mb-10">
+        {{-- <div class="mb-5">
             <img src="{{ $detail_data->getLastMediaUrl('places-images') }}" class="w-full md:h-80 object-cover"
                 alt="{{ $detail_data->title }}" />
-        </div>
+        </div> --}}
         <div class="mb-5">
             <div class="text-start mb-5 flex md:justify-start justify-center text-gray-700">
                 <h1 class="hover:text-blue-700 text-xs cursor-pointer">Beranda</h1>
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <div class="text-sm md:text-base text-justify text-gray-700 leading-normal">
-                        {!! $detail_data->description !!}
+                        {!! Purifier::clean($detail_data->description) !!}
                     </div>
                 </div>
                 <div class="w-full md:w-full">
@@ -67,11 +67,11 @@
                             <img src="{{ $detail_data->getFirstMediaUrl('places-images') }}"
                                 class="w-full md:h-80 object-cover rounded-md" alt="{{ $detail_data->title }}" />
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
                             @foreach ($media_data as $media)
-                                <div class="w-full cursor-pointer" onclick="showImageModal('{{ $media->getUrl() }}')">
+                                <div class="w-full h-40 md:h-48 cursor-pointer" onclick="showImageModal('{{ $media->getUrl() }}')">
                                     <img src="{{ $media->getUrl() }}"
-                                        class="w-full h-40 md:h-48 object-cover rounded-md hover:opacity-80 transition"
+                                        class="w-full h-full object-cover rounded-md hover:opacity-80 transition"
                                         alt="{{ $media->name }}">
                                 </div>
                             @endforeach
@@ -100,6 +100,6 @@
             document.getElementById('imageModal').classList.add('hidden');
         }
     </script>
-    @include('frontend.partial.service')
+    {{-- @include('frontend.partial.service') --}}
     @include('frontend.partial.footer')
 @endsection

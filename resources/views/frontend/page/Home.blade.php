@@ -2,22 +2,86 @@
 
 @section('container')
     @include('frontend.partial.navbar')
-    <div class="container mx-auto max-w-6xl mb-10 md:mb-24 lg:mt-44 mt-20">
-        <div class="text-center mb-5 hidden lg:flex justify-center" data-aos="fade-up" data-aos-anchor-placement="top-center">
-            <div>
-                <h1 class="text-3xl text-blue-700 font-bold">
-                    Hallo, Waterboomers!
-                </h1>
-                <span class="font-bold text-gray-700 text-sm">#PastiLebihSeru</span>
+    <div class="container mx-auto max-w-6xl px-4 mb-10 md:mb-10 lg:mt-28 mt-24">
+        <div class="mb-14">
+            <div class="w-full h-64 md:h-44 object-cover border shadow-md rounded-md">
+                <img src="{{ asset('storage/' . $slider->first()->image) }}" class="w-full h-full object-cover rounded-md"
+                    alt="">
             </div>
         </div>
-        <div class="swiper default-carousel relative">
-            <div class="swiper-wrapper">
-                @foreach ($slider as $item)
-                    <div class="swiper-slide w-full h-full">
-                        <img src="{{ asset('storage/' . $item->image) }}" alt="Slide {{ $item->title }}"
-                            class="w-full h-96 md:h-96  object-cover md:rounded-lg" />
+
+        <div class="mb-5">
+            <div class="w-full flex gap-2 justify-between items-center">
+                <div>
+                    <h1 class="text-2xl md:text-3xl text-blue-800 font-bold">
+                        Informasi Promo
+                    </h1>
+                    <span class="text-gray-500 text-sm">Temukan promo menarik dan spesial untuk mu!</span>
+                </div>
+                <div class="item-center">
+                    {{-- <h1 class="text-sm text-gray-500 hover:text-blue-700 cursor-pointer">Lihat lainya <i
+                            class="fa fa-arrow-right"></i></h1> --}}
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 ">
+            @forelse ($promo as $item)
+                <div
+                    class="mb-5 rounded-md shadow-lg hover:shadow-sm transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 flex flex-col justify-between">
+                    <div class="">
+                        <img src="{{ asset('storage/' . $item->image) }}" class="w-[1080px] h-96 rounded-t-lg"
+                            alt="" />
+                        <div class="px-3 py-4 mb-1">
+                            <h1 class="text-lg text-center text-gray-700 font-semibold ">
+                                {{ $item->title }}
+                            </h1>
+                        </div>
                     </div>
+                    <div class="px-3 mb-3 mt-auto">
+                        <div class="mb-3 ">
+                            <h1 class="text-sm py-4 mb-2 text-center font-semibold text-blue-700">
+                                <i class="fa fa-calendar"></i> Berlaku Sampai {{ format_tanggal($item->end_date) }}
+                            </h1>
+                            <a href="{{ route('detail.promo', $item->slug) }}"
+                                class="w-full flex justify-center text-center  text-sm md:text-base font-semibold text-gray-700 rounded-md border hover:bg-blue-700 hover:text-white py-3 px-3">
+                                Cek Sekarang
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <div class="col-span-4 text-center text-gray-500  p-20 rounded-md bg-slate-50">
+                    <div class="flex justify-center items-center mt-10 mb-5">
+                        <img src="{{ asset('img/notfon.png') }}" class="w-16" alt="">
+                    </div>
+                    <div class="items-center">
+                        <h1 class="font-semibold">Tidak di temukan!</h1>
+                    </div>
+                </div>
+            @endforelse
+
+            <div class="border mb-5 rounded-md">
+                <a href="{{ route('promo.page') }}">
+                    <div class="w-full flex flex-col items-center justify-center pt-10 mb-10 md:pt-40">
+                        <i class="fa fa-arrow-right rounded-full hover:text-blue-700 border py-4 px-4 mb-2"></i>
+                        <h1 class="text-sm text-gray-700">Lihat lainnya</h1>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+        {{-- <div class="swiper default-carousel relative">
+            <div class="swiper-wrapper">
+                @foreach ($promo as $item)
+                    <div class="swiper-slide w-60 h-96 md:h-fukl">
+                        <a href="{{ route('detail.promo', $item->slug) }}">
+                            <img src="{{ asset('storage/' . $item->image) }}" alt="Slide {{ $item->title }}"
+                                class="w-full h-full object-cover rounded-lg" />
+                        </a>
+                    </div>
+                    
                 @endforeach
             </div>
             <button id="slider-button-left"
@@ -37,10 +101,10 @@
                 </svg>
             </button>
             <div class="swiper-pagination !bottom-3"></div>
-        </div>
+        </div> --}}
     </div>
 
-    <div class="container mx-auto max-w-6xl mb-10 md:mb-24">
+    {{-- <div class="container mx-auto max-w-6xl mb-10 md:mb-24">
         <div class="flex flex-col md:flex-row justify-center text-sm md:text-base">
             <div class="w-full">
                 <h1 class="text-2xl font-poppins md:text-3xl text-center text-gray-700 font-bold py-4">
@@ -66,20 +130,23 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <div class="container mx-auto max-w-6xl md:mb-24" data-aos="fade-up" data-aos-anchor-placement="top-center">
-        <div class="py-5">
-            <h1 class="text-center font-poppins text-gray-700 text-2xl md:text-3xl font-bold">
-                Jelajah dan Explorasi
-            </h1>
+    <div class="container mx-auto max-w-6xl px-4 md:mb-24" data-aos="fade-up" data-aos-anchor-placement="top-center">
+        <div class="w-full mb-5 gap-2 flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl md:text-3xl text-blue-800 font-bold">
+                    Jelajah dan Explorasi
+                </h1>
+                <span class=" text-gray-500 text-sm md:text-base">Temukan wahana pemainan air yang susuai untuk mu!</span>
+            </div>
         </div>
         <div>
             <div class="swiper default-carousel relative">
                 <div class="swiper-wrapper gap-2">
                     @foreach ($jelajah as $item)
-                        <div class="swiper-slide px-2">
-                            <a href="">
+                        <div class="swiper-slide">
+                            <a href="{{ route('jelajah.detail', $item->slug) }}">
                                 <div class="h-96 md:h-96 rounded-lg overflow-hidden shadow-md relative group">
                                     <img src="{{ $item->getFirstMediaUrl('places-images') }}" alt="{{ $item->name }}"
                                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
@@ -105,8 +172,7 @@
         </div>
     </div>
 
-
-    <div class="container mx-auto max-w-6xl md:mb-24" data-aos="fade-up" data-aos-anchor-placement="top-center">
+    {{-- <div class="container mx-auto max-w-6xl md:mb-24" data-aos="fade-up" data-aos-anchor-placement="top-center">
         <div class="py-5">
             <h1 class="text-2xl md:text-3xl font-poppins  font-bold text-gray-700 text-center">
                 Promo Spesial
@@ -127,68 +193,93 @@
             </div>
             <div class="swiper-pagination !bottom-3"></div>
         </div>
+    </div> --}}
 
-    </div>
-    <div class="container mx-auto max-w-6xl md:mb-24" data-aos="fade-up" data-aos-anchor-placement="top-center">
-        <div class="py-5">
-            <h1 class="text-2xl md:text-3xl font-poppins  font-bold text-gray-700 text-center">
-                Event Waterboom
-            </h1>
+    <div class="container mx-auto max-w-6xl px-4 md:mb-24" data-aos="fade-up" data-aos-anchor-placement="top-center">
+        <div class="w-full mb-5 gap-2 flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl md:text-3xl text-blue-800 font-bold">
+                    Event Waterboom
+                </h1>
+                <span class=" text-gray-500 text-sm md:text-base">Temukan wahana pemainan air yang susuai untuk mu!</span>
+            </div>
+            <div class="item-center">
+                <a href="{{ route('event.page') }}">
+                    <h1 class="text-xs md:text-sm  text-gray-500 hover:text-blue-700 cursor-pointer">Lihat lainya <i
+                            class="fa fa-arrow-right"></i></h1>
+                </a>
+            </div>
         </div>
-        <div class="swiper default-carousel relative">
-            <div class="swiper-wrapper gap-2">
-                @foreach ($event as $item)
-                    <div class="swiper-slide px-2">
-                        <div class="h-64 md:h-96 rounded-lg overflow-hidden shadow-md relative group">
-                            <img src="{{ asset('storage/' . $item->thumbail) }}" alt="Slide   1"
-                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 ">
+            @forelse ($event as $item)
+                <div
+                    class="mb-5 rounded-md shadow-lg hover:shadow-sm transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 flex flex-col justify-between">
+                    <div class="">
+                        <img src="{{ asset('storage/' . $item->thumbail) }}" class="w-[1080px] h-96 rounded-t-lg"
+                            alt="" />
+                        <div class="px-3 py-4 mb-1">
+                            <h1 class="text-lg text-center text-gray-700 font-semibold ">
+                                {{ $item->title }}
+                            </h1>
                         </div>
                     </div>
-                @endforeach
-            </div>
-            <div class="swiper-pagination !bottom-3"></div>
-        </div>
-    </div>
-
-    <div class="container mx-auto max-w-6xl px-2 mb-10 md:mb-24" data-aos="fade-up" data-aos-anchor-placement="top-center">
-        <div class="py-5">
-            <h1 class="text-center font-poppins text-2xl md:text-3xl text-gray-700 font-bold">
-                Penghargaan dan Prestasi
-            </h1>
-            <h5 class="px-2 py-3 fonbo text-gray-700 text-center">
-                Terima kasih atas kepercayaan seluruh mitra dan pelanggan kami,
-                sehingga Waterboom Jogja telah mencapai prestasi ini.
-            </h5>
-            <hr />
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 lg::grid-cols-4 gap-2">
-            @foreach ($penghargaan as $item)
-                <div class="w-full  flex justify-center">
-                    <img src="{{ asset('storage/' . $item->image) }}"
-                        class="w-24 md:w-full h-auto object-contain rounded-lg" alt="{{ $item->title }}" />
+                    <div class="px-3 mb-3 mt-auto">
+                        <div class="mb-3 ">
+                            <h1 class="text-sm py-4 mb-2 text-center font-semibold text-blue-700">
+                                <i class="fa fa-calendar"></i> Berlaku Sampai {{ format_tanggal($item->end_date) }}
+                            </h1>
+                            <a href="{{ route('event.detail', $item->slug) }}"
+                                class="w-full flex justify-center text-center  text-sm md:text-base font-semibold text-gray-700 rounded-md border hover:bg-blue-700 hover:text-white py-3 px-3">
+                                Cek Sekarang
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="col-span-4 text-center text-gray-500  p-20 rounded-md bg-slate-50">
+                    <div class="flex justify-center items-center mt-10 mb-5">
+                        <img src="{{ asset('img/notfon.png') }}" class="w-16" alt="">
+                    </div>
+                    <div class="items-center">
+                        <h1 class="font-semibold">Tidak di temukan!</h1>
+                    </div>
+                </div>
+            @endforelse
+
+            <div class="border mb-5 rounded-md">
+                <a href="{{ route('promo.page') }}">
+                    <div class="w-full flex flex-col items-center justify-center pt-10 mb-10 md:pt-40">
+                        <i class="fa fa-arrow-right rounded-full hover:text-blue-700 border py-4 px-4 mb-2"></i>
+                        <h1 class="text-sm text-gray-700">Lihat lainnya</h1>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 
-    <div class="container mx-auto max-w-6xl mb-10 md:mb-24" data-aos="fade-up" data-aos-anchor-placement="top-center">
-        <div class="py-5">
-            <h1 class="text-center  px-2 text-2xl md:text-3xl text-gray-700 font-bold">
-                Artikel dan Informasi Terbaru
-            </h1>
-            <p class="text-center text-sm  px-2 md:text-base  py-2">
-                Dapatkan informasi terbaru dari artikel kami dibawah ini.
-            </p>
+    <div class="container mx-auto max-w-6xl px-4 mb-10 md:mb-24" data-aos="fade-up"
+        data-aos-anchor-placement="top-center">
+        <div class="w-full flex justify-between items-center py-5">
+            <div>
+                <h1 class="text-2xl md:text-3xl text-blue-800 font-bold">
+                    Artikel dan Informasi Terbaru
+                </h1>
+                <span class=" text-gray-500 text-sm md:text-base">Dapatkan informasi terbaru dari artikel kami dibawah
+                    ini.</span>
+            </div>
+            <div class="item-center">
+            </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 px-4 md:px-0">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 md:px-0">
             <!-- Kiri: Slider -->
-            <div class="col-span-1 px- mb-3">
+            <div class="col-span-1 mb-3">
                 <div class="swiper default-carousel relative">
                     <div class="swiper-wrapper gap-2">
                         @foreach ($berita as $item)
                             <div class="swiper-slide">
                                 <div class="bg-white">
-                                    <img class="w-full mb-3 h-44 rounded-md object-cover transition-transform duration-500 group-hover:scale-110"
+                                    <img class="w-full h-full mb-3 rounded-md object-cover transition-transform duration-500 group-hover:scale-110"
                                         src="{{ $item->getFirstMediaUrl('news-images') }}" alt="{{ $item->title }}" />
                                     <div class="mb-2">
                                         <h1 class="text-sm md:text-base mb-2 hover:text-blue-700">
@@ -196,8 +287,9 @@
                                         </h1>
                                     </div>
                                     <div class="mb-2 py-2">
-                                        <h1 class="text-xs text-gray-600 hover:text-blue-700 ">Lebih lanjut <i
-                                                class="fa fa-angle-right"></i></h1>
+                                        <a href="{{ route('detail.blog', $item->slug) }}"
+                                            class="text-xs text-gray-600 hover:text-blue-700 cursor-pointer">Lebih lanjut
+                                            <i class="fa fa-angle-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -206,7 +298,7 @@
                     <div class="swiper-pagination"></div>
                 </div>
             </div>
-            <div class="col-span-2 space-y-4 px-2">
+            <div class="col-span-2 space-y-4">
                 @foreach ($berita as $item)
                     <div class="hidden md:flex flex-col md:flex-row bg-white rounded-md  overflow-hidden">
                         <div class="h-auto md:w-40 flex-none">
@@ -218,23 +310,26 @@
                                 <h2 class="py-2 px-4 text-sm hover:text-blue-700 md:text-base ">
                                     {{ $item->title }}
                                 </h2>
-                                <h1 class="text-xs text-gray-600 hover:text-blue-700 py-2 px-4">Lebih lanjut <i
-                                        class="fa fa-angle-right"></i></h1>
+                                <a href="{{ route('detail.blog', $item->slug) }}"
+                                    class="text-xs cursor-pointer text-gray-600 hover:text-blue-700 py-2 px-4">Lebih lanjut
+                                    <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
                 @endforeach
                 <div class="hidden lg:flex flex-col md:flex-row justify-center bg-white overflow-hidden">
-                    <a href="{{ route('blog.page') }}" class="w-full text-center text-gray-700 rounded-md py-3 font-semibold hover:bg-blue-700 hover:text-white">
+                    <a href="{{ route('blog.page') }}"
+                        class="w-full text-center text-gray-700 rounded-md py-3 font-semibold hover:bg-blue-700 hover:text-white">
                         Lihat Artikel Lainya +
                     </a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container mx-auto max-w-6xl mb-6 md:mb-10" data-aos="fade-up" data-aos-anchor-placement="top-center">
+    <div class="container mx-auto max-w-6xl px-4 mb-6 md:mb-10" data-aos="fade-up"
+        data-aos-anchor-placement="top-center">
         <div class="w-full px-2 py-5 flex justify-center">
-            <iframe class="w-full md:w-full h-auto md:h-96 rounded-lg shadow-md"
+            <iframe class="w-full md:w-full h-full md:h-96 rounded-lg shadow-md"
                 src="https://www.youtube.com/embed/U5BJckX4ADw?si=K9XoJgNvrWdqJgCZ" title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -242,7 +337,7 @@
         </div>
     </div>
 
-    <div class="container mx-auto max-w-6xl mb-10 md:mb-10">
+    {{-- <div class="container mx-auto max-w-6xl mb-10 md:mb-10">
         <div class="py-5">
             <h1 class="text-center  px-2 text-2xl md:text-3xl text-gray-700 font-bold">
                 Waterboom Partner
@@ -268,7 +363,7 @@
                 </div>
             @endforelse
         </div>
-    </div>
+    </div> --}}
 
     @include('frontend.partial.service')
     @include('frontend.partial.footer')

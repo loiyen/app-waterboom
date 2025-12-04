@@ -26,7 +26,7 @@
     </style>
 </head>
 
-<body class="font-poppins" style="overflow-x: hidden">
+<body class="font-poppins " style="overflow-x: hidden">
 
 
     <div id="loading" class="fixed inset-0 w-full h-full bg-white flex flex-col items-center justify-center z-[9999]">

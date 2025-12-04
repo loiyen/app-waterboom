@@ -31,7 +31,7 @@ class BlogService
     {
         $news_other = News::with('user')->where('is_active', 1)
             ->inRandomOrder()
-            ->limit(3)
+            ->limit(4)
             ->get();
 
         $data_detail     = News::with('user')->where('slug', $slug)->firstOrFail();

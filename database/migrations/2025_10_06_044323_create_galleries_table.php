@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('galleries', function (Blueprint $table) {
             $table->id();
-            $table->enum('category', ['tiket', 'slider', 'penghargaan dan prestasi','partner','checkout'])->default('tiket');
+            $table->enum('category', ['tiket', 'slider', 'penghargaan dan prestasi','partner','checkout','group','acara','promo'])->default('tiket');
             $table->string('title')->nullable();
-            $table->string('image')->nullable();;
+            $table->string('image')->nullable();
             $table->boolean('is_active')->default(1);
             $table->timestamps();
         });

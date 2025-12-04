@@ -2,12 +2,13 @@
 
 namespace App\Services;
 
+use App\Models\Galleries;
 use App\Models\Promos;
 use Illuminate\Support\Facades\DB;
 
 class PromoService
 {
-    public function getPromos($status = 'all', $search = '', $perPage = 8)
+    public function getPromos($status = 'all', $search = '', $perPage = 21)
     {
         $query = Promos::query();
 
@@ -37,12 +38,15 @@ class PromoService
             ? $totalAll
             : ($countByCategory[strtolower($status)] ?? 0);
 
+        $banner_promo   = Galleries::where('category', 'promo')->get();
+
         return [
             'promos' => $promos,
             'countByCategory' => $countByCategory,
-            'totalAll' => $totalAll,
+            'totalAll'      => $totalAll,
             'totalFiltered' => $totalFiltered,
-            'status' => $status,
+            'status'        => $status,
+            'banner'        => $banner_promo
         ];
     }
 
