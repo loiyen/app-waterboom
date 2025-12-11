@@ -58,7 +58,7 @@ class PromosResource extends Resource
                     ->dehydrated()
                     ->maxLength(255),
                 Select::make('category')
-                ->label('Kategori')
+                    ->label('Kategori')
                     ->options([
                         'Tiket' => 'Tiket',
                         'Resto' => 'Resto',
@@ -148,11 +148,7 @@ class PromosResource extends Resource
                     ->label('JUDUL')
                     ->searchable()
                     ->wrap(),
-                TextColumn::make('description')
-                    ->label('DESKRIPSI')
-                    ->limit(50)
-                    ->tooltip(fn($state) => $state)
-                    ->wrap(),
+                
                 TextColumn::make('start_date')
                     ->label('DARI')
                     ->formatStateUsing(
@@ -192,6 +188,7 @@ class PromosResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])

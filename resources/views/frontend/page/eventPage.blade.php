@@ -40,7 +40,7 @@
         </div>
 
         <div id="event-container">
-            @include('frontend.page.partial.event_list', ['data_event' => $data_event]);
+            @include('frontend.page.partial.event_list', ['data_event' => $data_event])
         </div>
 
     </div>

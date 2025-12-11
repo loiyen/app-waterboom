@@ -13,6 +13,7 @@ use Illuminate\Support\Carbon;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
@@ -56,9 +57,23 @@ class NewsResource extends Resource
                     ->dehydrated(false),
                 Hidden::make('user_id')
                     ->default(fn() => auth()->id()),
+                Select::make('kategori')
+                    ->label('Kategori')
+                    ->preload()
+                    ->native()
+                    ->placeholder('Pilih Kategori')
+                    ->options([
+                        'tiket'             => 'Tiket',
+                        'acara'             => 'Acara',
+                        'event'             => 'Event',
+                        'promosi'           => 'Promosi',
+                        'wahana'            => 'Wahana',
+                        'resto'             => 'Resto', 
+                    ]),
                 TextInput::make('slug')
                     ->disabled()
                     ->dehydrated()
+                    ->hidden()
                     ->maxLength(255),
                 Textarea::make('title')
                     ->label('Judul Berita')
@@ -137,16 +152,16 @@ class NewsResource extends Resource
                     ->label('JUDUL')
                     ->wrap()
                     ->searchable(),
-                TextColumn::make('summary')
-                    ->label('RINGKASAN')
-                    ->limit(50)
-                    ->tooltip(fn($state) => $state)
-                    ->wrap(),
-                TextColumn::make('content')
-                    ->label('ISI')
-                    ->limit(30)
-                    ->tooltip(fn($state) => $state)
-                    ->wrap(),
+                // TextColumn::make('summary')
+                //     ->label('RINGKASAN')
+                //     ->limit(50)
+                //     ->tooltip(fn($state) => $state)
+                //     ->wrap(),
+                // TextColumn::make('content')
+                //     ->label('ISI')
+                //     ->limit(30)
+                //     ->tooltip(fn($state) => $state)
+                //     ->wrap(),
                 TextColumn::make('is_active')
                     ->label('STATUS')
                     ->badge()
@@ -158,6 +173,7 @@ class NewsResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])

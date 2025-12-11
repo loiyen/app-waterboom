@@ -102,11 +102,11 @@ class AboutsResource extends Resource
                     ->openUrlInNewTab(),
                 TextColumn::make('title')
                     ->label('JUDUL'),
-                TextColumn::make('content')
-                    ->label('DESKRIPSI')
-                    ->limit(30)
-                    ->tooltip(fn($state) => $state)
-                    ->wrap(),
+                // TextColumn::make('content')
+                //     ->label('DESKRIPSI')
+                //     ->limit(30)
+                //     ->tooltip(fn($state) => $state)
+                //     ->wrap(),
                 TextColumn::make('sub_content')
                     ->label('TYPE')
                     ->badge()
@@ -116,6 +116,7 @@ class AboutsResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])

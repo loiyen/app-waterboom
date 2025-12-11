@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class OrderSummary extends BaseWidget
 {
+    public static function canView(): bool
+    {
+        return auth()->user()?->hasRole('super_admin') ?? false;
+    }
+
     protected function getStats(): array
     {
         $totalOrders = Orders::count();

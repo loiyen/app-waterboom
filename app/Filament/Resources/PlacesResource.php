@@ -140,16 +140,16 @@ class PlacesResource extends Resource
                     ->icon(fn(bool $state): string => $state ? 'heroicon-o-squares-plus' : 'heroicon-o-squares-plus'),
                 SpatieMediaLibraryImageColumn::make('images')
                     ->label('FOTO')
-                    ->collection('images')
+                    ->collection('places-images')
                     ->square(),
                 TextColumn::make('name')
                     ->label('NAMA')
                     ->searchable(),
-                TextColumn::make('description')
-                    ->label('DESKRIPSI')
-                    ->limit(30)
-                    ->tooltip(fn($state) => $state)
-                    ->wrap(),
+                // TextColumn::make('description')
+                //     ->label('DESKRIPSI')
+                //     ->limit(30)
+                //     ->tooltip(fn($state) => $state)
+                //     ->wrap(),
                 TextColumn::make('open')
                     ->label('BUKA'),
                 TextColumn::make('close')
@@ -165,6 +165,7 @@ class PlacesResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])

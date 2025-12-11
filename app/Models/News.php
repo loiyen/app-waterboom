@@ -13,6 +13,7 @@ class News extends Model implements HasMedia
     protected $fillable = [
         'user_id',
         'title',
+        'kategori',
         'slug',
         'summary',
         'content',

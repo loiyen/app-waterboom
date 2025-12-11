@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Galleries;
 use App\Models\Sales;
 
 class GroupService
@@ -9,9 +10,11 @@ class GroupService
     public function getData()
     {
         $sales = Sales::where('is_active', 1)->paginate(8);
+        $data_banner = Galleries::where('category', 'group')->get();
 
         return [
-            'sales'         => $sales
+            'sales'         => $sales,
+            'banner'        => $data_banner
         ];
     }
 

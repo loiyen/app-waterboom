@@ -21,10 +21,11 @@
     </div>
 
     <div class="container mx-auto max-w-6xl mb-10 px-4">
-        <div class="mb-5">
+        <div class="mb-5 flex justify-between flex-col md:flex-row ">
             <h1 class="text-2xl md:text-3xl py-3 text-start font-bold text-gray-700">
                 {{ $detail_loker->position }}
             </h1>
+            <h1 class="text-sm  text-gray-400">{{ format_tanggal_jam($detail_loker->created_at) }}</h1>
         </div>
         <div class="flex gap-5">
             <div class="border p-3 rounded-lg flex items-center gap-2 w-44 mb-10">
@@ -89,7 +90,6 @@
                         class="block border rounded-md hover:bg-blue-700 hover:text-white p-3 text-sm text-gray-500 text-center">
                         Kirim Lamaran
                     </a>
-
                 </div>
             </div>
         </div>

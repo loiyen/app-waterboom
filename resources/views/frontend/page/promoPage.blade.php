@@ -3,7 +3,7 @@
 @section('container')
     @include('frontend.partial.navbar')
 
-    <div class="container mx-auto max-w-6xl lg:mt-32 sm:mt-16 mb-10">
+    <div class="container mx-auto max-w-6xl lg:mt-32 mt-16 mb-10">
         <div class="mb-5">
             <img src="{{ asset('storage/'.$banner->first()->image) }}" class="w-full md:h-80 object-cover" alt="" />
         </div>

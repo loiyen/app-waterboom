@@ -24,7 +24,7 @@ class BlogController extends Controller
         $data = $this->blogService->getData();
 
         return view('frontend.page.blogPage', [
-            'title'                     => 'Blog || Waterboom Jogja',
+            'title'                    => 'Blog || Waterboom Jogja',
             'berita'                   => $data['berita'],
             'berita_lain'               => $data['news_other'],
             'berita_slider'             => $data['berita_slider']
@@ -36,32 +36,24 @@ class BlogController extends Controller
         try {
             $data = $this->blogService->getDetail($slug);
 
-            // Berita saat ini (object)
             $currentNews = $data['detail'];
             $currentId   = $currentNews->id;
 
-            // Ambil semua berita kecuali berita saat ini
             $allNews = News::where('id', '!=', $currentId)->get();
 
-            // Ambil isi konten semua berita
             $documents = $allNews->pluck('content')->toArray();
 
-            // Hitung TF-IDF semua dokumen
             $tfidfDocs = $tfidfService->compute($documents);
 
-            // Hitung TF-IDF untuk berita saat ini
             $currentTfidf = $tfidfService->compute([$currentNews->content])[0];
 
-            // Hitung similarity
             $similarity = [];
             foreach ($tfidfDocs as $index => $vec) {
                 $similarity[$index] = $tfidfService->cosineSimilarity($currentTfidf, $vec);
             }
 
-            // Urutkan berdasarkan kemiripan dari paling tinggi
             arsort($similarity);
 
-            // Ambil 5 berita teratas sebagai rekomendasi
             $related = collect($similarity)
                 ->take(5)
                 ->map(function ($score, $index) use ($allNews) {
@@ -74,8 +66,8 @@ class BlogController extends Controller
             return view('frontend.page.blogPageDetail', [
                 'title'         => 'Detail || Waterboom Jogja',
                 'berita'        => $currentNews,
-                'berita_lain'   => $data['news_other'],  // original
-                'related_news'  => $related,             // rekomendasi TF-IDF
+                'berita_lain'   => $data['news_other'],  
+                'related_news'  => $related,             
             ]);
         } catch (\Exception $e) {
             Log::error('Gagal memuat detail blog: ' . $e->getMessage());

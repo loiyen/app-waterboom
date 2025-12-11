@@ -51,7 +51,7 @@
             <div class="text-start px-4 mb-0 flex justify-center md:justify-start text-gray-700">
                 <h1 class="hover:text-blue-700 text-xs cursor-pointer">Beranda</h1>
                 <h1 class="text-xs font-semibold">
-                    <i class="fa fa-angle-right text-gray-400 px-2"></i> Blog
+                    <i class="fa fa-angle-right text-gray-400 px-2"></i> Artikel & Berita
                 </h1>
             </div>
         </div>
@@ -77,13 +77,12 @@
             </div>
         </div>
 
-        <div class="flex flex-col md:flex-row gap-5">
-
+        <div class="flex flex-col md:flex-row mb-10">
             <div id="berita-container" class="w-full mb-5 md:mb-0">
+                
                 @include('frontend.page.partial.blog_list', ['berita' => $berita])
             </div>
-
-            <div class="w-full md:w-1/2">
+            {{-- <div class="w-full md:w-1/2">
                 <h1 class="font-semibold text-lg mb-5 text-gray-700">
                     Berita Lainya
                 </h1>
@@ -104,6 +103,192 @@
                             </div>
                         </div>
                     @endforeach
+                </div>
+            </div> --}}
+        </div>
+        <div class="mb-10">
+            <div class="mb-5 flex justify-between items-center">
+                <h1 class="text-2xl font-semibold text-gray-700">Tiket</h1>
+                <a href="" class="text-gray-500 hover:text-blue-700 text-sm">Lihat semua <i class="fa fa-angle-right"></i></a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="mb-5 rounded-md shadow-md flex flex-col justify-between">
+                    <div class="w-full h-auto overflow-hidden relative group">
+                        <img src="{{ asset('img/1.png') }}"
+                            class="w-full h-full rounded-t-lg transition-transform duration-500 group-hover:scale-110"
+                            alt="" />
+                    </div>
+                    <div class="p-6 mt-auto">
+                        <a href="">
+                            <h1 class="text-lg text-gray-700 cursor-pointer hover:text-blue-700 font-semibold ">
+                                Waterboom Jogja Salah Satu Waterpark Terbesar Di Asia Tenggara
+                            </h1>
+                        </a>
+                        <h1 class="text-sm py-3 text-gray-600">
+                            Salah satu waterpark terbesar di asia tenggara yang berlokasi di kota wisata terbesar kedua
+                            di Indonesia yaitu Yogyakarta.
+                        </h1>
+                    </div>
+                </div>
+                <div class="mb-5 rounded-md shadow-md flex flex-col justify-between">
+                    <div class="w-full h-auto overflow-hidden relative group">
+                        <img src="{{ asset('img/1.png') }}"
+                            class="w-full h-full rounded-t-lg transition-transform duration-500 group-hover:scale-110"
+                            alt="" />
+                    </div>
+                    <div class="p-6 mt-auto">
+                        <a href="">
+                            <h1 class="text-lg text-gray-700 cursor-pointer hover:text-blue-700 font-semibold ">
+                                Waterboom Jogja Salah Satu Waterpark Terbesar Di Asia Tenggara
+                            </h1>
+                        </a>
+                        <h1 class="text-sm py-3 text-gray-600">
+                            Salah satu waterpark terbesar di asia tenggara yang berlokasi di kota wisata terbesar kedua
+                            di Indonesia yaitu Yogyakarta.
+                        </h1>
+                    </div>
+                </div>
+                <div class="mb-5 rounded-md shadow-md flex flex-col justify-between">
+                    <div class="w-full h-auto overflow-hidden relative group">
+                        <img src="{{ asset('img/1.png') }}"
+                            class="w-full h-full rounded-t-lg transition-transform duration-500 group-hover:scale-110"
+                            alt="" />
+                    </div>
+                    <div class="p-6 mt-auto">
+                        <a href="">
+                            <h1 class="text-lg text-gray-700 cursor-pointer hover:text-blue-700 font-semibold ">
+                                Waterboom Jogja Salah Satu Waterpark Terbesar Di Asia Tenggara
+                            </h1>
+                        </a>
+                        <h1 class="text-sm py-3 text-gray-600">
+                            Salah satu waterpark terbesar di asia tenggara yang berlokasi di kota wisata terbesar kedua
+                            di Indonesia yaitu Yogyakarta.
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-10">
+            <div class="mb-5 flex justify-between items-center">
+                <h1 class="text-2xl font-semibold text-gray-700">Wahana</h1>
+                <a href="" class="text-gray-500 hover:text-blue-700 text-sm">Lihat semua <i class="fa fa-angle-right"></i></a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="mb-5 rounded-md shadow-md flex flex-col justify-between">
+                    <div class="w-full h-auto overflow-hidden relative group">
+                        <img src="{{ asset('img/1.png') }}"
+                            class="w-full h-full rounded-t-lg transition-transform duration-500 group-hover:scale-110"
+                            alt="" />
+                    </div>
+                    <div class="p-6 mt-auto">
+                        <a href="">
+                            <h1 class="text-lg text-gray-700 cursor-pointer hover:text-blue-700 font-semibold ">
+                                Waterboom Jogja Salah Satu Waterpark Terbesar Di Asia Tenggara
+                            </h1>
+                        </a>
+                        <h1 class="text-sm py-3 text-gray-600">
+                            Salah satu waterpark terbesar di asia tenggara yang berlokasi di kota wisata terbesar kedua
+                            di Indonesia yaitu Yogyakarta.
+                        </h1>
+                    </div>
+                </div>
+                <div class="mb-5 rounded-md shadow-md flex flex-col justify-between">
+                    <div class="w-full h-auto overflow-hidden relative group">
+                        <img src="{{ asset('img/1.png') }}"
+                            class="w-full h-full rounded-t-lg transition-transform duration-500 group-hover:scale-110"
+                            alt="" />
+                    </div>
+                    <div class="p-6 mt-auto">
+                        <a href="">
+                            <h1 class="text-lg text-gray-700 cursor-pointer hover:text-blue-700 font-semibold ">
+                                Waterboom Jogja Salah Satu Waterpark Terbesar Di Asia Tenggara
+                            </h1>
+                        </a>
+                        <h1 class="text-sm py-3 text-gray-600">
+                            Salah satu waterpark terbesar di asia tenggara yang berlokasi di kota wisata terbesar kedua
+                            di Indonesia yaitu Yogyakarta.
+                        </h1>
+                    </div>
+                </div>
+                <div class="mb-5 rounded-md shadow-md flex flex-col justify-between">
+                    <div class="w-full h-auto overflow-hidden relative group">
+                        <img src="{{ asset('img/1.png') }}"
+                            class="w-full h-full rounded-t-lg transition-transform duration-500 group-hover:scale-110"
+                            alt="" />
+                    </div>
+                    <div class="p-6 mt-auto">
+                        <a href="">
+                            <h1 class="text-lg text-gray-700 cursor-pointer hover:text-blue-700 font-semibold ">
+                                Waterboom Jogja Salah Satu Waterpark Terbesar Di Asia Tenggara
+                            </h1>
+                        </a>
+                        <h1 class="text-sm py-3 text-gray-600">
+                            Salah satu waterpark terbesar di asia tenggara yang berlokasi di kota wisata terbesar kedua
+                            di Indonesia yaitu Yogyakarta.
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-10">
+            <div class="mb-5 flex justify-between items-center">
+                <h1 class="text-2xl font-semibold text-gray-700">Event</h1>
+                <a href="" class="text-gray-500 hover:text-blue-700 text-sm">Lihat semua <i class="fa fa-angle-right"></i></a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="mb-5 rounded-md shadow-md flex flex-col justify-between">
+                    <div class="w-full h-auto overflow-hidden relative group">
+                        <img src="{{ asset('img/1.png') }}"
+                            class="w-full h-full rounded-t-lg transition-transform duration-500 group-hover:scale-110"
+                            alt="" />
+                    </div>
+                    <div class="p-6 mt-auto">
+                        <a href="">
+                            <h1 class="text-lg text-gray-700 cursor-pointer hover:text-blue-700 font-semibold ">
+                                Waterboom Jogja Salah Satu Waterpark Terbesar Di Asia Tenggara
+                            </h1>
+                        </a>
+                        <h1 class="text-sm py-3 text-gray-600">
+                            Salah satu waterpark terbesar di asia tenggara yang berlokasi di kota wisata terbesar kedua
+                            di Indonesia yaitu Yogyakarta.
+                        </h1>
+                    </div>
+                </div>
+                <div class="mb-5 rounded-md shadow-md flex flex-col justify-between">
+                    <div class="w-full h-auto overflow-hidden relative group">
+                        <img src="{{ asset('img/1.png') }}"
+                            class="w-full h-full rounded-t-lg transition-transform duration-500 group-hover:scale-110"
+                            alt="" />
+                    </div>
+                    <div class="p-6 mt-auto">
+                        <a href="">
+                            <h1 class="text-lg text-gray-700 cursor-pointer hover:text-blue-700 font-semibold ">
+                                Waterboom Jogja Salah Satu Waterpark Terbesar Di Asia Tenggara
+                            </h1>
+                        </a>
+                        <h1 class="text-sm py-3 text-gray-600">
+                            Salah satu waterpark terbesar di asia tenggara yang berlokasi di kota wisata terbesar kedua
+                            di Indonesia yaitu Yogyakarta.
+                        </h1>
+                    </div>
+                </div>
+                <div class="mb-5 rounded-md shadow-md flex flex-col justify-between">
+                    <div class="w-full h-auto overflow-hidden relative group">
+                        <img src="{{ asset('img/1.png') }}"
+                            class="w-full h-full rounded-t-lg transition-transform duration-500 group-hover:scale-110"
+                            alt="" />
+                    </div>
+                    <div class="p-6 mt-auto">
+                        <a href="">
+                            <h1 class="text-lg text-gray-700 cursor-pointer hover:text-blue-700 font-semibold ">
+                                Waterboom Jogja Salah Satu Waterpark Terbesar Di Asia Tenggara
+                            </h1>
+                        </a>
+                        <h1 class="text-sm py-3 text-gray-600">
+                            Salah satu waterpark terbesar di asia tenggara yang berlokasi di kota wisata terbesar kedua
+                            di Indonesia yaitu Yogyakarta.
+                        </h1>
+                    </div>
                 </div>
             </div>
         </div>

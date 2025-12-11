@@ -5,10 +5,10 @@
                 Ada yang bisa kami bantu?
             </h1>
             <div>
-                <button
+                <a href="https://wa.me/6282250590837?text={{ urlencode('Halo, saya butuh bantuan!') }}"
                     class="rounded-lg text-gray-700 font-semibold py-2 px-4 border-2 outline-white hover:text-white bg-white hover:bg-blue-700 text-xs md:text-sm transition">
                     Pusat Bantuan
-                </button>
+                </a>
             </div>
         </div>
         <div>

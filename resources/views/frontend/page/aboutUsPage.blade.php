@@ -18,7 +18,7 @@
     </div>
 
     <div class="container mx-auto max-w-6xl mb-10 px-4">
-        <div class="mb-5">
+        <div class="mb-10">
             <h1 class="text-2xl md:text-3xl text-start font-bold text-gray-700">
                 <span class="text-blue-700">Waterboom</span> {{ $waterboom->title }}
             </h1>
@@ -34,15 +34,15 @@
             </div>
         </div>
         <div class="" data-aos="fade-up" data-aos-anchor-placement="top-center">
-            <div class="mb-5 text-sm md:text-base">
-                <h1 class="font-bold text-gray-700">{{ $visi->title }} & Misi Waterboom jogja </h1>
+            <div class="mb-5 text-sm md:text-2xl">
+                <h1 class="font-bold text-center md:text-start text-gray-700">{{ $visi->title }} & Misi Waterboom jogja </h1>
             </div>
-            <div class="flex flex-col md:flex-row justify-between gap-5 text-sm md:text-base text-gray-700 mb-16">
+            <div class="flex flex-col md:flex-row justify-between gap-10 text-sm md:text-base text-gray-700 mb-16">
                 <div class="w-full md:w-2/3">
                     <img src="{{ asset('storage/' . $visi->image) }}" class="object-cover rounded-md shadow-md" alt="">
                 </div>
                 <div class="w-full text-justify">
-                    <h1 class="mb-2 font-semibold text-center">" {!! Purifier::clean($visi->content) !!} "</h1>
+                    <h1 class="mb-2 font-semibold text-center"> {!! Purifier::clean($visi->content) !!} </h1>
                     <div>
                         <h1>{!! Purifier::clean($misi->content) !!}</h1>
                     </div>
@@ -50,8 +50,8 @@
             </div>
         </div>
         <div data-aos="fade-up" data-aos-anchor-placement="top-center">
-            <div class="mb-5 text-sm md:text-base">
-                <h1 class="font-bold text-gray-700">{{ $feature->title }}</h1>
+            <div class="mb-5 text-sm md:text-2xl">
+                <h1 class="font-bold text-center md:text-start text-gray-700">{{ $feature->title }}</h1>
             </div>
             <div class="flex flex-col md:flex-row justify-between gap-5 text-sm md:text-base text-gray-700 mb-16">
                 <div class="w-full text-justify">
@@ -64,7 +64,7 @@
         </div>
         <div class="mb-5" data-aos="fade-up" data-aos-anchor-placement="top-center">
             <div class="mb-10">
-                <h1 class="text-2xl md:text-3xl text-start font-bold text-gray-700">
+                <h1 class="text-2xl md:text-2xl text-start font-bold text-gray-700">
                     <span class="text-blue-700">Partner</span> Waterboom Jogja
                 </h1>
             </div>

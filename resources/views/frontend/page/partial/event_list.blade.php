@@ -1,4 +1,4 @@
- <div class="grid grid-cols-1 md:grid-cols-3  gap-10 mb-10">
+ <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
      @forelse ($data_event as $item)
          <div
              class="mb-5 rounded-md shadow-lg hover:shadow-sm transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 flex flex-col justify-between">

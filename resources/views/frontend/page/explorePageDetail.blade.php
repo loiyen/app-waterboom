@@ -29,7 +29,7 @@
             </h1>
         </div>
         <div>
-            <div class="flex flex-col md:flex-row gap-3">
+            <div class="flex flex-col md:flex-row gap-5">
                 <div class="w-full md:w-full mb-3">
                     <div class="mb-5 mt-3 text-xs md:text-sm">
                         <div class="flex justify-between border rounded-md shadow-sm py-4 px-6">

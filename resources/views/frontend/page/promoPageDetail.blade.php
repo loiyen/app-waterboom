@@ -3,7 +3,7 @@
 @section('container')
     @include('frontend.partial.navbar')
 
-    <div class="container mx-auto max-w-6xl lg:mt-32 mt-20 mb-10">
+    <div class="container mx-auto max-w-6xl lg:mt-32 mt-24 mb-10">
 
         <div class="text-start px-4 flex justify-center md:justify-start text-gray-700">
             <h1 class="hover:text-blue-700 text-xs cursor-pointer">Beranda</h1>
@@ -51,8 +51,7 @@
                                     <i class="fab fa-twitter"></i> Twitter
                                 </a>
 
-                                <button
-                                    onclick="navigator.clipboard.writeText('{{ request()->fullUrl() }}'); alert('Link disalin!')"
+                                <button onclick="copyLink()"
                                     class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-3 py-2 rounded-md">
                                     <i class="fa fa-link"></i> Salin
                                 </button>
@@ -96,7 +95,8 @@
                     <h1 class=" text-sm md:text-base py-2 font-semibold text-gray-700">Galeri</h1>
                     <div class="mb-2 py-2" onclick="showImageModal('{{ asset('storage/' . $promo->image) }}')">
                         <img src="{{ asset('storage/' . $promo->image) }}"
-                            class="w-full h-[500px] md:w-48 md:h-auto cursor-pointer rounded-md object-cover" alt="" />
+                            class="w-full h-[500px] md:w-48 md:h-auto cursor-pointer rounded-md object-cover"
+                            alt="" />
                     </div>
                 </div>
                 <div class="flex">
@@ -148,6 +148,28 @@
 
         function closeImageModal() {
             document.getElementById('imageModal').classList.add('hidden');
+        }
+    </script>
+
+    <script>
+        function copyLink() {
+            navigator.clipboard.writeText('{{ request()->fullUrl() }}')
+                .then(() => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil!',
+                        text: 'Link berhasil disalin.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
+                .catch(() => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal!',
+                        text: 'Tidak dapat menyalin link.',
+                    });
+                });
         }
     </script>
 

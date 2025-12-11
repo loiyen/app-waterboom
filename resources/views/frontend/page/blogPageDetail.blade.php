@@ -51,9 +51,8 @@
                             target="_blank" class="bg-sky-500 text-white px-3 py-2 rounded-md hover:bg-sky-600">
                             <i class="fab fa-twitter"></i> Twitter
                         </a>
-                        <button
-                            onclick="navigator.clipboard.writeText('{{ request()->fullUrl() }}'); alert('Link disalin!')"
-                            class="bg-gray-300 text-gray-800 px-3 py-2 rounded-md hover:bg-gray-400">
+                        <button onclick="copyLink()"
+                            class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-3 py-2 rounded-md">
                             <i class="fa fa-link"></i> Salin
                         </button>
                     </div>
@@ -166,4 +165,26 @@
         </div>
     </div>
     @include('frontend.partial.footer')
+
+    <script>
+        function copyLink() {
+            navigator.clipboard.writeText('{{ request()->fullUrl() }}')
+                .then(() => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil!',
+                        text: 'Link berhasil disalin.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
+                .catch(() => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal!',
+                        text: 'Tidak dapat menyalin link.',
+                    });
+                });
+        }
+    </script>
 @endsection

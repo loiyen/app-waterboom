@@ -21,7 +21,8 @@ class TiketGroupController extends Controller
 
         return view('frontend.page.buyTicketGroup', [
             'title'         => 'Group || Waterboom Jogja ',
-            'sales'         => $data['sales']
+            'sales'         => $data['sales'],
+            'banner'        => $data['banner']
         ]);
     }
 

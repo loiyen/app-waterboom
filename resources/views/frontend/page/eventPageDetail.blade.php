@@ -63,7 +63,6 @@
                     <p>{!! Purifier::clean($data_event->description) !!}</p>
                 </div>
                 <div class="text-justify text-sm border rounded-md p-5 md:text-base text-gray-700 mb-5">
-                    <h1 class="mb-3">Ketentuan</h1>
                     <p>{!! Purifier::clean($data_event->ketentuan) !!}</p>
                 </div>
                 <div class="flex flex-col md:flex-row justify-between items-center gap-2">
@@ -89,8 +88,7 @@
                             target="_blank" class="bg-sky-500 hover:bg-sky-600 text-white px-3 py-2 rounded-md">
                             <i class="fab fa-twitter"></i> Twitter
                         </a>
-                        <button
-                            onclick="navigator.clipboard.writeText('{{ request()->fullUrl() }}'); alert('Link disalin!')"
+                        <button onclick="copyLink()"
                             class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-3 py-2 rounded-md">
                             <i class="fa fa-link"></i> Salin
                         </button>
@@ -149,6 +147,28 @@
 
         function closeImageModal() {
             document.getElementById('imageModal').classList.add('hidden');
+        }
+    </script>
+
+    <script>
+        function copyLink() {
+            navigator.clipboard.writeText('{{ request()->fullUrl() }}')
+                .then(() => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil!',
+                        text: 'Link berhasil disalin.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
+                .catch(() => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal!',
+                        text: 'Tidak dapat menyalin link.',
+                    });
+                });
         }
     </script>
 

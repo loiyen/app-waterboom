@@ -5,21 +5,40 @@ namespace App\Filament\Pages;
 use Filament\Tables;
 use App\Models\Orders;
 use Filament\Pages\Page;
+use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
-use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\Action;
 use App\Filament\Exports\OrdersExporter;
 use Filament\Forms\Components\DatePicker;
+use Filament\Tables\Actions\ExportAction;
 use Illuminate\Database\Eloquent\Builder;
+
 
 class Report extends Page implements Tables\Contracts\HasTable
 {
     use Tables\Concerns\InteractsWithTable;
 
+
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationLabel = 'Laporan Order';
     protected static ?string $navigationGroup = 'Manajemen Laporan';
     protected static string $view = 'filament.pages.report';
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return auth()->user()?->hasRole('super_admin') ?? false;
+    }
+
+    public static function shouldRegisterNavigationGroup(): bool
+    {
+        return auth()->user()?->hasRole('super_admin') ?? false;
+    }
+
+    public static function canView(): bool
+    {
+        return auth()->user()?->hasRole('super_admin') ?? false;
+    }
+
 
     public function getTableQuery(): Builder
     {
