@@ -6,7 +6,7 @@ use Filament\Forms;
 use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
-use App\Models\TicketPrices;
+use App\Models\Ticketprices;
 use Illuminate\Support\Carbon;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
@@ -20,7 +20,7 @@ use App\Filament\Resources\TiketPricesResource\RelationManagers;
 
 class TiketPricesResource extends Resource
 {
-    protected static ?string $model = TicketPrices::class;
+    protected static ?string $model = Ticketprices::class;
     protected static ?string $navigationGroup = 'Manjeman Tiket';
     protected static ?string $navigationIcon = 'heroicon-o-banknotes';
 
