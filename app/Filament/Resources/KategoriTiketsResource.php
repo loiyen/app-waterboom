@@ -19,7 +19,7 @@ use App\Filament\Resources\KategoriTiketsResource\RelationManagers;
 
 class KategoriTiketsResource extends Resource
 {
-    protected static ?string $model = TicketCategories::class;
+    protected static ?string $model = Ticketcategories::class;
     protected static ?string $navigationGroup = 'Manjeman Tiket';
     protected static ?string $navigationIcon = 'heroicon-o-squares-plus';
 
