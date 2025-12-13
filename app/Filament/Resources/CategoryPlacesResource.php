@@ -7,7 +7,7 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use App\Models\Categoryplaces;
+use App\Models\CategoryPlaces;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
@@ -19,7 +19,7 @@ use Filament\Tables\Columns\TextColumn;
 
 class CategoryPlacesResource extends Resource
 {
-    protected static ?string $model = Categoryplaces::class;
+    protected static ?string $model = CategoryPlaces::class;
     protected static ?string $navigationGroup = 'Manajemen Navbar';
     protected static ?string $navigationIcon = 'heroicon-o-squares-plus';
 
