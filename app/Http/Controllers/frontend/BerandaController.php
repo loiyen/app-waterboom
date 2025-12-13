@@ -20,7 +20,7 @@ class BerandaController extends Controller
 
         $data = $this->berandaService->getData();
 
-        return view('frontend.page.Home', [
+        return view('frontend.page.beranda', [
             'title'             => 'Beranda || Waterboom-Jogja',
             'berita'            => $data['berita'],
             'slider'            => $data['slider'],
