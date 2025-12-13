@@ -19,6 +19,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "maatwebsite/excel": "^3.1",
+        "mews/purifier": "^3.4",
         "simplesoftwareio/simple-qrcode": "^4.0",
         "spatie/laravel-medialibrary": "^11.17"
     },
@@ -38,7 +39,8 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Helpers/TanggalHelper.php"
+            "app/Helpers/TanggalHelper.php",
+            "app/Helpers/JelajahHelper.php"
         ]
     },
     "autoload-dev": {

@@ -35,13 +35,14 @@
                     </button>
                     <ul id="dropdownMenu1"
                         class="hidden absolute py-2 left-0 mt-2 w-48 md:w-48 md:text-sm bg-white shadow-lg rounded-md text-neutral-700">
-                        @foreach ($kategori_jelajah as $item)
+                        @foreach (kategori_jelajah() as $item)
                             <a href="{{ route('jelajah.category', $item->slug) }}">
                                 <li class="py-2 px-5 hover:font-semibold hover:text-blue-800 cursor-pointer">
                                     {{ $item->name }}
                                 </li>
                             </a>
                         @endforeach
+
                     </ul>
                 </li>
 
@@ -253,13 +254,14 @@
                         <i class="fa fa-chevron-down ml-2"></i>
                     </button>
                     <ul id="dropdownMenu4" class="hidden mt-2 ml-3 text-gray-700">
-                        @foreach ($kategori_jelajah as $item)
+                        @foreach (kategori_jelajah() as $item)
                             <a href="{{ route('jelajah.category', $item->slug) }}">
-                                <li class="py-2 px-2 hover:text-blue-800 hover:font-semibold cursor-pointer">
+                                <li class="py-2 px-5 hover:font-semibold hover:text-blue-800 cursor-pointer">
                                     {{ $item->name }}
                                 </li>
                             </a>
                         @endforeach
+
                     </ul>
                 </li>
 
@@ -321,7 +323,7 @@
                                 Careers
                             </li>
                         </a>
-                       
+
                     </ul>
                 </li>
 

@@ -5,8 +5,9 @@
     <div class="container mx-auto max-w-6xl px-4 mb-10 md:mb-10 lg:mt-28 mt-24">
         <div class="mb-14">
             <div class="w-full h-64 md:h-44 object-cover border shadow-md rounded-md">
-                <img src="{{ asset('storage/' . $slider->first()->image) }}" class="w-full h-full object-cover rounded-md"
-                    alt="">
+                <img src="{{ optional($slider->first())->image ? asset('storage/' . optional($slider->first())->image) : asset('no-image.jpg') }}"
+                    class="w-full h-full object-cover rounded-md" alt="">
+
             </div>
         </div>
 
@@ -258,8 +259,7 @@
         </div>
     </div>
 
-    <div class="container mx-auto max-w-6xl px-4 mb-10 md:mb-24" data-aos="fade-up"
-        data-aos-anchor-placement="top-center">
+    <div class="container mx-auto max-w-6xl px-4 mb-10 md:mb-24" data-aos="fade-up" data-aos-anchor-placement="top-center">
         <div class="w-full flex justify-between items-center py-5">
             <div>
                 <h1 class="text-2xl md:text-3xl text-blue-800 font-bold">

@@ -33,19 +33,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
-        $kategori_jelajah = Cache::remember('kategori_jelajah', 3600, function () {
-            return CategoryPlaces::select('id', 'name', 'slug')->with('place')->get();
-        });
-
-        // dd($kategori_jelajah);
-
-        View::share('kategori_jelajah', $kategori_jelajah);
-
+        
         Paginator::useTailwind();
 
         $this->app->bind(LoginResponse::class, CustomLoginResponse::class);
-
-        
+          
     }
 }

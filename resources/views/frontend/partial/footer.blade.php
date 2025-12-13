@@ -21,7 +21,7 @@
                 <div class="flex-1">
                     <h1 class="text-sm font-semibold mt-1">Tentang</h1>
                     <ul class="text-xs space-y-1">
-                        @foreach ($kategori_jelajah as $item)
+                        @foreach (kategori_jelajah() as $item)
                             <li class="py-1 hover:text-blue-400 text-gray-600">
                                 <a href="{{ route('jelajah.category', $item->slug) }}">
                                     {{ $item->name }}
