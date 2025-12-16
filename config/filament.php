@@ -87,9 +87,7 @@ return [
 
     'livewire_loading_delay' => 'default',
 
-    'asset_url' => env('ASSET_URL', null),
+    'asset_url' => env('ASSET_URL', 'https://waterboomjogja.yentech.my.id'),
 
-
-   
 
 ];
