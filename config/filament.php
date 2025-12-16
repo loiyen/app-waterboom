@@ -56,6 +56,7 @@ return [
     */
 
     'assets_path' => null,
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -85,6 +86,9 @@ return [
     */
 
     'livewire_loading_delay' => 'default',
+
+    'asset_url' => env('ASSET_URL', null),
+
 
    
 
