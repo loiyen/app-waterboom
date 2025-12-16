@@ -9,4 +9,14 @@ class Categorynews extends Model
 {
     /** @use HasFactory<\Database\Factories\CategorynewsFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'slug'
+    ];
+
+     public function news()
+    {
+        return $this->hasMany(News::class, 'category_news_id');
+    }
 }

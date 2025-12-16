@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Ticketprices;
+use App\Models\Categorynews;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class TicketpricesPolicy
+class CategorynewsPolicy
 {
     use HandlesAuthorization;
 
@@ -15,15 +15,15 @@ class TicketpricesPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_tiket::prices');
+        return $user->can('view_any_category::news');
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Ticketprices $ticketprices): bool
+    public function view(User $user, Categorynews $categorynews): bool
     {
-        return $user->can('view_tiket::prices');
+        return $user->can('view_category::news');
     }
 
     /**
@@ -31,23 +31,23 @@ class TicketpricesPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_tiket::prices');
+        return $user->can('create_category::news');
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Ticketprices $ticketprices): bool
+    public function update(User $user, Categorynews $categorynews): bool
     {
-        return $user->can('update_tiket::prices');
+        return $user->can('update_category::news');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Ticketprices $ticketprices): bool
+    public function delete(User $user, Categorynews $categorynews): bool
     {
-        return $user->can('delete_tiket::prices');
+        return $user->can('delete_category::news');
     }
 
     /**
@@ -55,15 +55,15 @@ class TicketpricesPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_tiket::prices');
+        return $user->can('delete_any_category::news');
     }
 
     /**
      * Determine whether the user can permanently delete.
      */
-    public function forceDelete(User $user, Ticketprices $ticketprices): bool
+    public function forceDelete(User $user, Categorynews $categorynews): bool
     {
-        return $user->can('force_delete_tiket::prices');
+        return $user->can('force_delete_category::news');
     }
 
     /**
@@ -71,15 +71,15 @@ class TicketpricesPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_tiket::prices');
+        return $user->can('force_delete_any_category::news');
     }
 
     /**
      * Determine whether the user can restore.
      */
-    public function restore(User $user, Ticketprices $ticketprices): bool
+    public function restore(User $user, Categorynews $categorynews): bool
     {
-        return $user->can('restore_tiket::prices');
+        return $user->can('restore_category::news');
     }
 
     /**
@@ -87,15 +87,15 @@ class TicketpricesPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_tiket::prices');
+        return $user->can('restore_any_category::news');
     }
 
     /**
      * Determine whether the user can replicate.
      */
-    public function replicate(User $user, Ticketprices $ticketprices): bool
+    public function replicate(User $user, Categorynews $categorynews): bool
     {
-        return $user->can('replicate_tiket::prices');
+        return $user->can('replicate_category::news');
     }
 
     /**
@@ -103,6 +103,6 @@ class TicketpricesPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_tiket::prices');
+        return $user->can('reorder_category::news');
     }
 }

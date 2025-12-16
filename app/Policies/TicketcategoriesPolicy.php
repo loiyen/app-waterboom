@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\TicketCategories;
+use App\Models\Ticketcategories;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class TicketCategoriesPolicy
+class TicketcategoriesPolicy
 {
     use HandlesAuthorization;
 
@@ -21,7 +21,7 @@ class TicketCategoriesPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, TicketCategories $ticketCategories): bool
+    public function view(User $user, Ticketcategories $ticketcategories): bool
     {
         return $user->can('view_kategori::tikets');
     }
@@ -37,7 +37,7 @@ class TicketCategoriesPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, TicketCategories $ticketCategories): bool
+    public function update(User $user, Ticketcategories $ticketcategories): bool
     {
         return $user->can('update_kategori::tikets');
     }
@@ -45,7 +45,7 @@ class TicketCategoriesPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, TicketCategories $ticketCategories): bool
+    public function delete(User $user, Ticketcategories $ticketcategories): bool
     {
         return $user->can('delete_kategori::tikets');
     }
@@ -61,7 +61,7 @@ class TicketCategoriesPolicy
     /**
      * Determine whether the user can permanently delete.
      */
-    public function forceDelete(User $user, TicketCategories $ticketCategories): bool
+    public function forceDelete(User $user, Ticketcategories $ticketcategories): bool
     {
         return $user->can('force_delete_kategori::tikets');
     }
@@ -77,7 +77,7 @@ class TicketCategoriesPolicy
     /**
      * Determine whether the user can restore.
      */
-    public function restore(User $user, TicketCategories $ticketCategories): bool
+    public function restore(User $user, Ticketcategories $ticketcategories): bool
     {
         return $user->can('restore_kategori::tikets');
     }
@@ -93,7 +93,7 @@ class TicketCategoriesPolicy
     /**
      * Determine whether the user can replicate.
      */
-    public function replicate(User $user, TicketCategories $ticketCategories): bool
+    public function replicate(User $user, Ticketcategories $ticketcategories): bool
     {
         return $user->can('replicate_kategori::tikets');
     }

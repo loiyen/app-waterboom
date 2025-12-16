@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Models\Categorynews;
 use App\Models\News;
+use PhpOffice\PhpSpreadsheet\Calculation\Category;
 
 class BlogService
 {
@@ -20,11 +22,30 @@ class BlogService
             ->limit(4)
             ->get();
 
+        $categories = CategoryNews::with([
+            'news' => function ($q) {
+                $q->where('is_active', 1)
+                    ->latest()
+                    ->limit(3);
+            }
+        ])->get();
+
         return [
             'berita'             => $news,
             'news_other'         => $news_other,
-            'berita_slider'      => $news_slider
+            'berita_slider'      => $news_slider,
+            'category_berita'    => $categories
         ];
+    }
+
+    public function getdetailbycategory(string $slug)
+    {
+        $news_by_category = Categorynews::where('slug', $slug)->firstOrFail();
+
+        return $news_by_category->news()
+            ->where('is_active', 1)
+            ->latest()
+            ->paginate(6);
     }
 
     public function getDetail($slug)

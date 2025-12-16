@@ -27,7 +27,8 @@ class BlogController extends Controller
             'title'                    => 'Blog || Waterboom Jogja',
             'berita'                   => $data['berita'],
             'berita_lain'               => $data['news_other'],
-            'berita_slider'             => $data['berita_slider']
+            'berita_slider'             => $data['berita_slider'],
+            'berita_category'           => $data['category_berita']
         ]);
     }
 
@@ -73,6 +74,16 @@ class BlogController extends Controller
             Log::error('Gagal memuat detail blog: ' . $e->getMessage());
             abort(404, 'Berita tidak ditemukan');
         }
+    }
+
+    public function detail_by_category($slug)
+    {
+        $data       = $this->blogService->getdetailbycategory($slug);
+
+        return view('frontend.page.blogCategoryPage',[
+            'title'                  => $slug,
+            'data_category'          => $data
+        ]);
     }
 
 

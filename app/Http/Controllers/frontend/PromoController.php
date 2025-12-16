@@ -4,7 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Models\Promos;
 use Illuminate\Http\Request;
-use App\Services\promoService;
+use App\Services\PromoService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
@@ -14,7 +14,7 @@ class PromoController extends Controller
 
     protected $promoService;
 
-    public function __construct(promoService $promoService)
+    public function __construct(PromoService $promoService)
     {
         $this->promoService = $promoService;
     }

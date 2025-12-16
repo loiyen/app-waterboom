@@ -63,7 +63,7 @@ Route::get('/filter/promo', [PromoController::class, 'filterPromo'])->name('prom
 
 //acara
 Route::get('/acara', [EventController::class, 'index'])->name('event.page');
-Route::get('/acara-detail/{slug}',[EventController::class, 'Detail'])->name('event.detail');
+Route::get('/acara-detail/{slug}', [EventController::class, 'Detail'])->name('event.detail');
 Route::get('/acara-search', [EventController::class, 'search'])->name('event.search');
 
 //blog
@@ -71,12 +71,13 @@ Route::get('/blog', [BlogController::class, 'index'])->name('blog.page');
 Route::get('/blog/search', [BlogController::class, 'search'])->name('blog.search');
 Route::get('/blog-load', [BlogController::class, 'loadMore'])->name('blog.load');
 Route::get('/blog-detail/{slug}', [BlogController::class, 'detail'])->name('detail.blog');
+Route::get('/kategori/{slug}', [BlogController::class, 'detail_by_category'])->name('blog.category');
 
 //tentang-kami 
 Route::get('/waterboom/tentang-kami', [AboutController::class, 'index'])->name('about.tentangkami');
 Route::get('/Pengumuman/careers', [AboutController::class, 'careers'])->name('about.careers');
-Route::get('/pengumuman/detail-careers/{slug}',[AboutController::class, 'careers_detail'])->name('detail.careers');
+Route::get('/pengumuman/detail-careers/{slug}', [AboutController::class, 'careers_detail'])->name('detail.careers');
 
 //filamnt 
 Route::get('/print/orders', [ReportPrintController::class, 'print_order'])->name('print.orders');
-Route::get('/print/order/{id}', [ReportPrintController::class , 'print_order_by_id'])->name('print.orderbyid');
+Route::get('/print/order/{id}', [ReportPrintController::class, 'print_order_by_id'])->name('print.orderbyid');

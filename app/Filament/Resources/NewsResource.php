@@ -34,7 +34,7 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 class NewsResource extends Resource
 {
     protected static ?string $model = News::class;
-    protected static ?string $navigationGroup = 'Manajemen Navbar';
+    protected static ?string $navigationGroup = 'Manajemen Artikel & Berita';
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
 
     public static function getPluralLabel(): string
@@ -57,24 +57,11 @@ class NewsResource extends Resource
                     ->dehydrated(false),
                 Hidden::make('user_id')
                     ->default(fn() => auth()->id()),
-                Select::make('kategori')
-                    ->label('Kategori')
-                    ->preload()
-                    ->native()
-                    ->placeholder('Pilih Kategori')
-                    ->options([
-                        'tiket'             => 'Tiket',
-                        'acara'             => 'Acara',
-                        'event'             => 'Event',
-                        'promosi'           => 'Promosi',
-                        'wahana'            => 'Wahana',
-                        'resto'             => 'Resto', 
-                    ]),
-                TextInput::make('slug')
-                    ->disabled()
-                    ->dehydrated()
-                    ->hidden()
-                    ->maxLength(255),
+                Select::make('category_news_id')
+                    ->label('Pilih Kategori')
+                    ->relationship('category_news', 'name')
+                    ->required(),
+
                 Textarea::make('title')
                     ->label('Judul Berita')
                     ->required()
@@ -86,6 +73,10 @@ class NewsResource extends Resource
                 Textarea::make('summary')
                     ->label('Ringkasan Berita')
                     ->required()
+                    ->maxLength(255),
+                TextInput::make('slug')
+                    ->disabled()
+                    ->dehydrated()
                     ->maxLength(255),
                 RichEditor::make('content')
                     ->label('Isi')
@@ -148,6 +139,10 @@ class NewsResource extends Resource
                     ->icon('heroicon-m-user')
                     ->badge()
                     ->searchable(),
+                TextColumn::make('category_news.name')
+                    ->label('KATEGORI')
+                    ->icon(fn(bool $state): string => $state ? 'heroicon-o-squares-plus' : 'heroicon-o-squares-plus')
+                    ->badge(),
                 TextColumn::make('title')
                     ->label('JUDUL')
                     ->wrap()

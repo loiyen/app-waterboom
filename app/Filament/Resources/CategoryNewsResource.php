@@ -7,29 +7,28 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use App\Models\CategoryPlaces;
+use App\Models\Categorynews;
+use Illuminate\Support\Carbon;
 use Filament\Resources\Resource;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\CategoryPlacesResource\Pages;
-use App\Filament\Resources\CategoryPlacesResource\RelationManagers;
-use Filament\Forms\Components\Textarea;
-use Filament\Tables\Columns\TextColumn;
+use App\Filament\Resources\CategoryNewsResource\Pages;
 
-class CategoryPlacesResource extends Resource
+class CategoryNewsResource extends Resource
 {
-    protected static ?string $model = CategoryPlaces::class;
-    protected static ?string $navigationGroup = 'Manajemen Wahana';
+    protected static ?string $model = Categorynews::class;
+    protected static ?string $navigationGroup = 'Manajemen Artikel & Berita';
     protected static ?string $navigationIcon = 'heroicon-o-squares-plus';
 
     public static function getPluralLabel(): string
     {
-        return 'Kategori Jelajah';
+        return 'Kategori Berita';
     }
     public static function getLabel(): string
     {
-        return 'Kategori Jelajah';
+        return 'Kategori Berita';
     }
 
     public static function form(Form $form): Form
@@ -45,12 +44,10 @@ class CategoryPlacesResource extends Resource
                         $set('slug', Str::slug($state));
                     }),
                 TextInput::make('slug')
+                    ->label('Slug')
                     ->disabled()
                     ->dehydrated()
                     ->maxLength(255),
-                Textarea::make('description')
-                    ->label('Deskripsi')
-                    ->columnSpanFull()
             ]);
     }
 
@@ -58,21 +55,25 @@ class CategoryPlacesResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('created_at')
+                    ->label('TANGGAL')
+                    ->formatStateUsing(
+                        fn($state) =>
+                        Carbon::parse($state)
+                            ->locale('id')
+                            ->translatedFormat('d F Y H:i')
+                    )
+                    ->sortable()
+                    ->wrap(),
                 TextColumn::make('name')
                     ->label('Nama'),
-                TextColumn::make('slug')
-                    ->label('Slug'),
-                TextColumn::make('description')
-                    ->label('Deskripsi')
-                    ->limit(50)
-                    ->tooltip(fn($state) => $state),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -91,9 +92,9 @@ class CategoryPlacesResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategoryPlaces::route('/'),
-            'create' => Pages\CreateCategoryPlaces::route('/create'),
-            'edit' => Pages\EditCategoryPlaces::route('/{record}/edit'),
+            'index' => Pages\ListCategoryNews::route('/'),
+            'create' => Pages\CreateCategoryNews::route('/create'),
+            'edit' => Pages\EditCategoryNews::route('/{record}/edit'),
         ];
     }
 }

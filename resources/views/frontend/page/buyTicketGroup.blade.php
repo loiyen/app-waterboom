@@ -3,9 +3,13 @@
 @section('container')
     @include('frontend.partial.navbar')
     <div class="container mx-auto max-w-6xl lg:mt-32 mt-16 mb-10">
-        <div class="mb-5">
-            <img src="{{ asset('storage/' . $banner->first()->image) }}" class="w-full md:h-80 object-cover" alt="" />
-        </div>
+        @if ($banner && $banner->first())
+            <div class="mb-5">
+                <img src="{{ asset('storage/' . $banner->first()->image) }}" class="w-full md:h-80 object-cover"
+                    alt="">
+            </div>
+        @endif
+
         <div class="text-start mb-5 px-4 flex justify-center md:justify-start text-gray-700">
             <a href="/">
                 <h1 class="hover:text-blue-700 hover:underline text-xs cursor-pointer">Beranda</h1>

@@ -33,7 +33,7 @@ use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 class PlacesResource extends Resource
 {
     protected static ?string $model = Places::class;
-    protected static ?string $navigationGroup = 'Manajemen Navbar';
+    protected static ?string $navigationGroup = 'Manajemen Wahana';
     protected static ?string $navigationIcon = 'heroicon-o-globe-europe-africa';
 
     public static function getPluralLabel(): string

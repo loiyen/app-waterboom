@@ -15,7 +15,7 @@
             <div class="w-full flex gap-2 justify-between items-center">
                 <div>
                     <h1 class="text-2xl md:text-3xl text-blue-800 font-bold">
-                        Informasi Promo11
+                        Informasi Promo
                     </h1>
                     <span class="text-gray-500 text-sm">Temukan promo menarik dan spesial untuk mu!</span>
                 </div>

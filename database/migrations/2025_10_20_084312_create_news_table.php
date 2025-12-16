@@ -14,12 +14,11 @@ return new class extends Migration
         Schema::create('news', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('categorynews_id'); 
+            $table->foreignId('category_news_id'); 
             $table->string('title');
             $table->string('slug')->nullable();
             $table->string('summary')->nullable();
             $table->longText('content')->nullable();
-            $table->enum('kategori', ['tiket', 'acara', 'event', 'promosi', 'wahana', 'resto'])->default('tiket');
             $table->boolean('is_active')->nullable();
             $table->timestamps();
         });
