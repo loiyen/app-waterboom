@@ -63,14 +63,20 @@ class GaleriResource extends Resource
                 FileUpload::make('image')
                     ->label('Upload Foto')
                     ->image()
-                    ->directory('uploads')
+                    ->disk('public')          
+                    ->directory('galeri')
                     ->visibility('public')
                     ->enableDownload()
                     ->enableOpen()
                     ->maxSize(5048)
                     ->helperText('Maksimal : 5 MB')
                     ->columnSpanFull()
-                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/jpg']),
+                    ->acceptedFileTypes([
+                        'image/jpeg',
+                        'image/png',
+                        'image/webp',
+                        'image/jpg',
+                    ]),
                 Toggle::make('is_active')
                     ->label('Aktifkan postingan?')
                     ->onColor('success')

@@ -11,7 +11,6 @@ use App\Http\Controllers\Controller;
 
 class PromoController extends Controller
 {
-
     protected $promoService;
 
     public function __construct(PromoService $promoService)

@@ -2,19 +2,20 @@
 
 namespace App\Providers;
 
-use Filament\Support\Facades\FilamentAsset;
-use Filament\Support\Assets\Js; // penting!
-
+use Illuminate\Support\Facades\URL;
 use App\Models\CategoryPlaces;
+
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use Spatie\MediaLibrary\MediaLibraryServiceProvider;
+use Illuminate\Support\ServiceProvider;
+use Filament\Support\Assets\Js; // penting!
+use Filament\Support\Facades\FilamentAsset;
 
-use Filament\Http\Responses\Auth\Contracts\LoginResponse;
 use App\Filament\Responses\CustomLoginResponse;
+use Spatie\MediaLibrary\MediaLibraryServiceProvider;
+use Filament\Http\Responses\Auth\Contracts\LoginResponse;
 
 
 
@@ -33,10 +34,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        
+
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
+
+
         Paginator::useTailwind();
 
         $this->app->bind(LoginResponse::class, CustomLoginResponse::class);
-          
     }
 }
