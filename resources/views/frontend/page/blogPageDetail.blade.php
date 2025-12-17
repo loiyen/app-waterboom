@@ -3,167 +3,155 @@
 @section('container')
     @include('frontend.partial.navbar')
 
-    <div class="container mx-auto max-w-6xl md:mt-32 mt-24 mb-10">
-        {{-- <div class="mb-5">
-            <img src="{{ $berita->getFirstMediaUrl('news-images') }}" class="w-full md:h-80 object-cover" alt="" />
-        </div> --}}
-        <div class="text-start px-4 flex justify-center md:justify-start text-gray-700">
-            <a href="/">
-                <h1 class="hover:text-blue-700 text-xs cursor-pointer">Beranda</h1>
+    <div class="container mx-auto max-w-6xl md:mt-32 mt-24 mb-10 px-4">
+        <div class="flex items-center gap-1 text-xs text-gray-700">
+            <a href="/" class="hover:text-blue-700">Beranda</a>
+            <i class="fa fa-angle-right text-gray-400 px-1"></i>
+            <a href="{{ route('blog.page') }}" class="hover:text-blue-700">
+                Artikel & Berita
             </a>
-
-            <a href="{{ route('blog.page') }}">
-                <h1 class="hover:text-blue-700 text-xs text-gray-700 ">
-                    <i class="fa fa-angle-right  px-2"></i> Artikel & Berita
-                </h1>
-            </a>
-            <h1 class="text-xs font-semibold">
-                <i class="fa fa-angle-right text-gray-400 px-2"></i> Detail Berita
-            </h1>
+            <i class="fa fa-angle-right text-gray-400 px-1"></i>
+            <span class="font-semibold">Detail Berita</span>
         </div>
     </div>
 
-    <div class="container mx-auto max-w-6xl mb-10 px-4">
-        <div class="mb-10 md:mb-5 md:flex-row md:items-center rounded-md py-3 justify-between">
-            <div class="text-2xl md:text-3xl mb-10 w-full text-start text-gray-700">
-                <h1 class="font-semibold">
-                    {{ $berita->title }}
-                </h1>
-            </div>
-            <div class="flex flex-col md:flex-row justify-between mb-5  items-center">
-                <h1 class="text-sm mb-2 md:text-base text-gray-400">{{ format_tanggal_jam($berita->created_at) }}</h1>
-                <div class="flex flex-col md:flex-row  gap-2 items-center">
-                    <h1 class="text-gray-400">Bagikan Postingan :</h1>
-                    <div class="px-2 text-xs flex  gap-3">
-                        @php
-                            $url = urlencode(request()->fullUrl());
-                            $title = urlencode($berita->title);
-                        @endphp
-                        <a href="https://api.whatsapp.com/send?text={{ $title }}%20{{ $url }}"
-                            target="_blank" class="bg-green-500 text-white px-3 py-2 rounded-md hover:bg-green-600">
-                            <i class="fab fa-whatsapp"></i> WhatsApp
-                        </a>
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}" target="_blank"
-                            class="bg-blue-600 text-white px-3 py-2 rounded-md hover:bg-blue-700">
-                            <i class="fab fa-facebook-f"></i> Facebook
-                        </a>
-                        <a href="https://twitter.com/intent/tweet?url={{ $url }}&text={{ $title }}"
-                            target="_blank" class="bg-sky-500 text-white px-3 py-2 rounded-md hover:bg-sky-600">
-                            <i class="fab fa-twitter"></i> Twitter
-                        </a>
-                        <button onclick="copyLink()"
-                            class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-3 py-2 rounded-md">
-                            <i class="fa fa-link"></i> Salin
-                        </button>
-                    </div>
-                </div>
+    <div class="container mx-auto max-w-6xl mb-16 px-4">
+        <h1 class="text-2xl md:text-3xl font-semibold text-gray-700 mb-6">
+            {{ $berita->title }}
+        </h1>
+
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+            <div class="flex items-center gap-2 text-sm text-gray-500">
+                <i class="fa fa-user-circle text-xl"></i>
+                <span>{{ $berita->user->name }}</span>
+                <span>•</span>
+                <span>{{ format_tanggal_jam($berita->created_at) }}</span>
             </div>
 
-            <div class="flex gap-2 items-center text-xs text-gray-700">
-                <i class="fa fa-user-circle text-2xl text-gray-400"></i>
-                <h1 class="text-sm md:text-base text-gray-600">{{ $berita->user->name }}</h1>
+            <div class="flex flex-wrap items-center gap-2 text-xs">
+                <span class="text-gray-500">Bagikan:</span>
+
+                @php
+                    $url = urlencode(request()->fullUrl());
+                    $title = urlencode($berita->title);
+                @endphp
+
+                <a href="https://api.whatsapp.com/send?text={{ $title }}%20{{ $url }}"
+                   target="_blank"
+                   class="bg-green-500 text-white px-3 py-2 rounded hover:bg-green-600">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}"
+                   target="_blank"
+                   class="bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+                <a href="https://twitter.com/intent/tweet?url={{ $url }}&text={{ $title }}"
+                   target="_blank"
+                   class="bg-sky-500 text-white px-3 py-2 rounded hover:bg-sky-600">
+                    <i class="fab fa-twitter"></i>
+                </a>
+
+                <button onclick="copyLink()"
+                        class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-3 py-2 rounded">
+                    <i class="fa fa-link"></i>
+                </button>
             </div>
         </div>
 
-        <div class="flex flex-col md:flex-row gap-5">
-            <div class="w-full mb-5 md:mb-0">
-                <div class="mb-4">
-                    <img src="{{ $berita->getLastMediaUrl('news-images') }}" class="rounded-t-lg w-80 h-full"
-                        alt="" />
+        <div class="flex flex-col md:flex-row gap-8">
+          
+            <div class="w-full">
+                <div class="mb-6 w-full aspect-[16/9] overflow-hidden rounded-lg">
+                    <img src="{{ $berita->getLastMediaUrl('news-images') }}"
+                         class="w-full h-full object-cover"
+                         alt="">
                 </div>
-                <div class="py-5 text-sm md:text-base leading-normal text-justify">
-                    <p class="text-gray-700">
-                        {!! Purifier::clean($berita->content) !!}
-                    </p>
+                <div class="prose max-w-none text-gray-700 text-justify mb-6">
+                    {!! Purifier::clean($berita->content) !!}
                 </div>
-                <div class="mb-2">
-                    <h1 class="text-xs text-gray-700">Created by : WaterboomJogja </h1>
-                </div>
-                <div>
-                    <div class="swiper default-carousel relative ">
-                        <div class="swiper-wrapper w-96">
+
+                <p class="text-xs text-gray-500 mb-8">
+                    Created by : WaterboomJogja
+                </p>
+                @if ($berita->getMedia('news-images')->count() > 1)
+                    <div class="swiper default-carousel relative mb-10">
+                        <div class="swiper-wrapper w-full">
                             @foreach ($berita->getMedia('news-images') as $item)
                                 <div class="swiper-slide">
-                                    <div class="h-96 md:h-96 overflow-hidden shadow-md relative group">
-                                        <img src="{{ $item->getUrl('') }}" alt="{{ $item->title }}"
-                                            class="w-full h-full object-cover rounded-md" />
+                                    <div class="aspect-[16/9] overflow-hidden rounded-lg shadow">
+                                        <img src="{{ $item->getUrl() }}"
+                                             class="w-full h-full object-cover"
+                                             alt="{{ $item->title }}">
                                     </div>
                                 </div>
                             @endforeach
                         </div>
-                        <button id="slider-button-left"
-                            class="custom-prev absolute top-1/2 -translate-y-1/2 left-3 z-20 bg-transparent w-10 h-10 rounded-full flex items-center justify-center shadow hover:bg-indigo-600 transition">
-                            <svg class="h-10 w-5 hover:text-white text-white" xmlns="http://www.w3.org/2000/svg"
-                                width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                <path d="M10.0002 11.9999L6 7.99971L10.0025 3.99719" stroke="currentColor"
-                                    stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
+                        <button
+                            class="custom-prev absolute top-1/2 -translate-y-1/2 left-3 z-20
+                                   bg-black/40 w-10 h-10 rounded-full flex items-center justify-center
+                                   text-white hover:bg-indigo-600 transition">
+                            ‹
                         </button>
-                        <button id="slider-button-right"
-                            class="custom-next absolute top-1/2 -translate-y-1/2 right-3 z-20 bg-transparent w-10 h-10 rounded-full flex items-center justify-center shadow hover:bg-indigo-600 transition">
-                            <svg class="h-5 w-5 hover:text-white text-white" xmlns="http://www.w3.org/2000/svg"
-                                width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                <path d="M5.99984 4.00012L10 8.00029L5.99748 12.0028" stroke="currentColor"
-                                    stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
+                        <button
+                            class="custom-next absolute top-1/2 -translate-y-1/2 right-3 z-20
+                                   bg-black/40 w-10 h-10 rounded-full flex items-center justify-center
+                                   text-white hover:bg-indigo-600 transition">
+                            ›
                         </button>
                     </div>
-                </div>
-                <div class="md:flex-row">
-                    <h1 class="text-lg font-bold text-blue-800">Berita Terkait</h1>
-                    <div class="grid grid-cols-2 md:grid-cols-3 text-sm py-3 gap-4 text-gray-700 ">
-                        @forelse ($related_news as $item)
-                            @php
-                                $news = $item['news'];
-                                $score = $item['score'];
-                            @endphp
-                            <a href="{{ route('detail.blog', $news->slug) }}" class="block group">
-                                <div class="p-2">
-                                    <h3 class="font-semibold text-sm mb-1 group-hover:text-blue-600">
-                                        {{ $news->title }}
-                                    </h3>
+                @endif
 
-                                    {{-- Score opsional (debug) --}}
-                                    {{-- <p class="text-xs text-gray-500">Skor: {{ number_format($score, 4) }}</p> --}}
-                                </div>
-                            </a>
-                        @empty
-                            <div class="border rounded-md col-span-4 p-5 w-full">
-                                <h1 class="text-center text-gray-400">belum ada</h1>
-                            </div>
-                        @endforelse
-                    </div>
+                <h2 class="text-lg font-bold text-blue-800 mb-4">
+                    Berita Terkait
+                </h2>
 
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm text-gray-700">
+                    @forelse ($related_news as $item)
+                        <a href="{{ route('detail.blog', $item['news']->slug) }}"
+                           class="block p-3 border rounded hover:shadow">
+                            <h3 class="font-semibold hover:text-blue-600">
+                                {{ $item['news']->title }}
+                            </h3>
+                        </a>
+                    @empty
+                        <div class="col-span-3 text-center text-gray-400 border p-5 rounded">
+                            Belum ada
+                        </div>
+                    @endforelse
                 </div>
             </div>
-            <div class="w-full md:w-1/2">
-                <h1 class="font-semibold text-lg mb-5 text-gray-700">
-                    Berita Lainya
-                </h1>
-                <div class="flex flex-col  gap-2">
 
+            <div class="w-full md:w-1/3">
+                <h2 class="font-semibold text-lg mb-5 text-gray-700">
+                    Berita Lainnya
+                </h2>
+
+                <div class="flex flex-col gap-5">
                     @foreach ($berita_lain as $item)
-                        <div class="w-full rounded-lg border hover:shadow-md mb-5">
-                            <div class="overflow-hidden shadow-md relative group">
+                        <div class="border rounded-lg hover:shadow">
+                            <div class="aspect-[16/9] overflow-hidden rounded-t-lg">
                                 <img src="{{ $item->getFirstMediaUrl('news-images') }}"
-                                    class="object-cover rounded-t-md
-                                transition-transform duration-500 group-hover:scale-110"
-                                    alt="image" />
+                                     class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                                     alt="">
                             </div>
-                            <div class="px-4 py-3">
+
+                            <div class="p-4">
                                 <a href="{{ route('detail.blog', $item->slug) }}">
-                                    <h1 class="text-lg hover:text-blue-700 font-semibold mb-3 text-gray-700">
+                                    <h3 class="font-semibold text-gray-700 hover:text-blue-700">
                                         {{ $item->title }}
-                                    </h1>
+                                    </h3>
                                 </a>
                             </div>
                         </div>
                     @endforeach
-
                 </div>
             </div>
         </div>
     </div>
+
     @include('frontend.partial.footer')
 
     <script>
@@ -172,17 +160,10 @@
                 .then(() => {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Berhasil!',
-                        text: 'Link berhasil disalin.',
+                        title: 'Berhasil',
+                        text: 'Link berhasil disalin',
                         showConfirmButton: false,
                         timer: 1500
-                    });
-                })
-                .catch(() => {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Gagal!',
-                        text: 'Tidak dapat menyalin link.',
                     });
                 });
         }
