@@ -66,9 +66,9 @@
         </div>
 
         <div class="flex flex-col md:flex-row gap-5">
-            <div class="w-80 mb-5 md:mb-0">
+            <div class="w-full mb-5 md:mb-0">
                 <div class="mb-4">
-                    <img src="{{ $berita->getLastMediaUrl('news-images') }}" class="rounded-t-lg w-full h-full"
+                    <img src="{{ $berita->getLastMediaUrl('news-images') }}" class="rounded-t-lg w-auto h-full"
                         alt="" />
                 </div>
                 <div class="py-5 text-sm md:text-base leading-normal text-justify">
