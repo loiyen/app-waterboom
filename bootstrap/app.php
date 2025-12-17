@@ -15,6 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->validateCsrfTokens(except: [
             'api/xendit/callback',
         ]);
+
+        $middleware->trustProxies(at: '*');
+
     })
 
     ->withExceptions(function (Exceptions $exceptions) {
