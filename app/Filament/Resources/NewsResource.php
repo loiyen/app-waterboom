@@ -86,23 +86,18 @@ class NewsResource extends Resource
                         'italic',
                         'underline',
                         'strike',
-                        'subscript',
-                        'superscript',
                         'heading',
-                        'alignLeft',
-                        'alignCenter',
-                        'alignRight',
-                        'alignJustify',
-                        'orderedList',
                         'bulletList',
+                        'orderedList',
                         'blockquote',
                         'codeBlock',
-                        'horizontalRule',
                         'link',
+                        'horizontalRule',
                         'clearFormatting',
                         'undo',
                         'redo',
                     ])
+
                     ->columnSpanFull()
                     ->required(),
                 SpatieMediaLibraryFileUpload::make('images')

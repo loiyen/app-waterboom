@@ -69,7 +69,7 @@
         @if ($feature)
             <div data-aos="fade-up" data-aos-anchor-placement="top-center">
                 <div class="mb-5 text-sm md:text-2xl">
-                    <h1 class="font-bold text-center md:text-start text-gray-700">
+                    <h1 class="font-bold text-center md:text-end text-gray-700">
                         {{ $feature->title }}
                     </h1>
                 </div>
