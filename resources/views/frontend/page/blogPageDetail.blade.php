@@ -71,7 +71,7 @@
                     <img src="{{ $berita->getLastMediaUrl('news-images') }}" class="rounded-t-lg w-full h-full"
                         alt="" />
                 </div>
-                <div class="flex flex-col md:flex-row gap-5">
+                <div class="flex flex-col md:flex-row gap-5 mb-5">
                     <div class="w-full">
                         <div class="py-5 mb-5 text-sm md:text-base leading-normal text-justify">
                             <p class="text-gray-700">
@@ -80,7 +80,7 @@
                         </div>
                         <div class="">
                             <h1 class="text-xs text-gray-700">Created by : WaterboomJogja </h1>
-                            <div class="grid grid-cols-2 md:grid-cols-3">
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
                                 @foreach ($berita->getMedia('news-images') as $item)
                                     <div class="mb-2 py-2 cursor-pointer"
                                         onclick="showImageModal('{{ $item->getUrl() }}')">
@@ -120,8 +120,6 @@
                         </div>
                     </div>
                 </div>
-
-
 
                 <div class="md:flex-row">
                     <h1 class="text-lg font-bold text-blue-800">Berita Terkait</h1>
