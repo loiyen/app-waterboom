@@ -5,7 +5,6 @@
 
     <div class="container mx-auto max-w-6xl lg:mt-32 mt-16 mb-10">
         <div class="mb-5">
-
             <img src="{{ optional($banner->first())->image ? asset('storage/' . optional($banner->first())->image) : asset('no-image.jpg') }}" class="w-full md:h-80 object-cover" alt="" />
         </div>
         <div class="text-start px-4 flex justify-center md:justify-start text-gray-700">

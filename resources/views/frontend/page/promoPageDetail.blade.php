@@ -30,7 +30,6 @@
                     <div class="mb-10">
                         <div class="flex flex-col md:flex-row items-center gap-2">
                             <span class="text-gray-500 text-sm">Bagikan Postingan :</span>
-
                             @php
                                 $url = urlencode(request()->fullUrl());
                                 $title = urlencode($promo->title);
