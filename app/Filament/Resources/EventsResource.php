@@ -82,14 +82,24 @@ class EventsResource extends Resource
                         'italic',
                         'underline',
                         'strike',
-                        'link',
+                        'subscript',
+                        'superscript',
+                        'heading',
+                        'alignLeft',
+                        'alignCenter',
+                        'alignRight',
+                        'alignJustify',
                         'orderedList',
                         'bulletList',
                         'blockquote',
                         'codeBlock',
+                        'horizontalRule',
+                        'link',
+                        'clearFormatting',
                         'undo',
                         'redo',
-                    ])->columnSpanFull()
+                    ])
+                    ->columnSpanFull()
                     ->required(),
                 DatePicker::make('start_date')
                     ->label('Tanggal Mulai')
