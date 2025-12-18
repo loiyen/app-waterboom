@@ -242,12 +242,12 @@
 
             <ul class="text-gray-700 text-xs">
                 <a href="{{ route('beranda.utama') }}">
-                    <li class="border font-semibold py-3 px-5 hover:text-blue-800 cursor-pointer">
+                    <li class="border font-semibold py-4 px-5 hover:text-blue-800 cursor-pointer">
                         Beranda
                     </li>
                 </a>
 
-                <li class="border py-3 px-5 hover:text-blue-800">
+                <li class="border py-4 px-5 hover:text-blue-800">
                     <button class="dropdown-btn w-full font-semibold flex justify-between items-center"
                         data-dropdown="dropdownMenu4">
                         Jelajah
@@ -256,7 +256,7 @@
                     <ul id="dropdownMenu4" class="hidden mt-2 ml-3 text-gray-700">
                         @foreach (kategori_jelajah() as $item)
                             <a href="{{ route('jelajah.category', $item->slug) }}">
-                                <li class="py-2 px-5 hover:font-semibold hover:text-blue-800 cursor-pointer">
+                                <li class="py-3 px-5 hover:font-semibold hover:text-blue-800 cursor-pointer">
                                     {{ $item->name }}
                                 </li>
                             </a>
@@ -287,21 +287,21 @@
                     </ul>
                 </li> --}}
                 <a href="{{ route('event.page') }}">
-                    <li class="border font-semibold py-3 px-5 hover:text-blue-800 cursor-pointer">
+                    <li class="border font-semibold py-4 px-5 hover:text-blue-800 cursor-pointer">
                         Acara
                     </li>
                 </a>
                 <a href="{{ route('promo.page') }}">
-                    <li class="border font-semibold py-3 px-5 hover:text-blue-800 cursor-pointer">
+                    <li class="border font-semibold py-4 px-5 hover:text-blue-800 cursor-pointer">
                         Promo
                     </li>
                 </a>
                 <a href="{{ route('blog.page') }}">
-                    <li class="border font-semibold py-3 px-5 hover:text-blue-800 cursor-pointer">
+                    <li class="border font-semibold py-4 px-5 hover:text-blue-800 cursor-pointer">
                         Artikel & Berita
                     </li>
                 </a>
-                <li class="border py-3 px-5 hover:text-blue-800">
+                <li class="border py-4 px-5 hover:text-blue-800">
                     <button class="dropdown-btn w-full font-semibold flex justify-between items-center"
                         data-dropdown="dropdownMenu6">
                         Tentang
@@ -309,17 +309,17 @@
                     </button>
                     <ul id="dropdownMenu6" class="hidden mt-2 ml-3 text-gray-700">
                         <a href="{{ route('about.tentangkami') }}">
-                            <li class="py-2 px-2 hover:text-blue-800 hover:font-semibold cursor-pointer">
+                            <li class="py-3 px-2 hover:text-blue-800 hover:font-semibold cursor-pointer">
                                 Tentang Kami
                             </li>
                         </a>
                         <a href="{{ route('group.info') }}">
-                            <li class="py-2 px-2 hover:text-blue-800 hover:font-semibold cursor-pointer">
+                            <li class="py-3 px-2 hover:text-blue-800 hover:font-semibold cursor-pointer">
                                 Group
                             </li>
                         </a>
                         <a href="{{ route('about.careers') }}">
-                            <li class="py-2 px-2 hover:text-blue-800 hover:font-semibold cursor-pointer">
+                            <li class="py-3 px-2 hover:text-blue-800 hover:font-semibold cursor-pointer">
                                 Careers
                             </li>
                         </a>
