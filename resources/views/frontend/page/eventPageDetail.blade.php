@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="flex flex-col md:flex-row justify-between items-center gap-5 mb-10">
-                    <a href="#" class="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-5 rounded-md">
+                    <a href="{{ $data_event->link }}" target="_blank" rel="noopener noreferrer" class="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-5 rounded-md">
                         Daftar Sekarang!
                     </a>
                 </div>
