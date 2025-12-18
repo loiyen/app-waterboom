@@ -25,7 +25,7 @@
             @forelse ($data_category as $news)
                 <div class="mb-5 rounded-md shadow-md flex flex-col justify-between">
                     <div class="w-full h-auto overflow-hidden relative group">
-                        <img src="{{ asset('img/1.png') }}"
+                        <img src="{{ $news->getFirstMediaUrl('news-images') }}"
                             class="w-full h-full rounded-t-lg transition-transform duration-500 group-hover:scale-110"
                             alt="">
                     </div>
