@@ -9,6 +9,8 @@
     <link rel="icon" type="image/png" href="{{ asset('img/logo-base.png') }}">
     @vite(['resources/css/app.css'])
 
+    @include('frontend.partial.metapixel')
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         .swiper-wrapper {

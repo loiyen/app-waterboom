@@ -1,5 +1,4 @@
 
-@include('frontend.partial.metapixel')
 
 <div class="container mx-auto md:px-4 bg-gradient-to-r from-blue-700 to-blue-400 " data-aos="fade-up">
     <div class="max-w-6xl mx-auto w-full flex flex-col md:flex-row items-center justify-between py-10 rounded-md">
