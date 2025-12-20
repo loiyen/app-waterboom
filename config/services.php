@@ -39,5 +39,8 @@ return [
         'callback_token' => env('XENDIT_CALLBACK_TOKEN'),
         'is_production' => env('XENDIT_IS_PRODUCTION', false),
     ],
+     'meta' => [
+        'pixel_id' => env('META_PIXEL_ID'),
+    ],
 
 ];
