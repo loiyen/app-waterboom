@@ -17,14 +17,7 @@
                                         <h1 class="font-bold text-center mb-2 px-3">
                                             {{ $item->title }}
                                         </h1>
-                                        {{-- <div class="flex justify-center gap-2">
-                                            <h5 class="text-xs text-center">
-                                                <i class="fa fa-user"></i> {{ $item->user->name }}
-                                            </h5>
-                                            <h5 class="text-xs text-center">
-                                                <i class="fa fa-calendar"></i> {{ format_tanggal($item->created_at) }}
-                                            </h5>
-                                        </div> --}}
+                        
                                     </span>
                                 </div>
                             </div>

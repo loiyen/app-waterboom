@@ -53,7 +53,7 @@
 
             $('#search-input').on('keyup', function() {
                 clearTimeout(typingTimer);
-                let query = $(this).val();
+                let query = $(this).val().substring(0, 100);
 
                 typingTimer = setTimeout(function() {
                     if (isLoading) return;

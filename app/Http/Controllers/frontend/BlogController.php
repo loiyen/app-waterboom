@@ -67,8 +67,8 @@ class BlogController extends Controller
             return view('frontend.page.blogPageDetail', [
                 'title'         => 'Detail || Waterboom Jogja',
                 'berita'        => $currentNews,
-                'berita_lain'   => $data['news_other'],  
-                'related_news'  => $related,             
+                'berita_lain'   => $data['news_other'],
+                'related_news'  => $related,
             ]);
         } catch (\Exception $e) {
             Log::error('Gagal memuat detail blog: ' . $e->getMessage());
@@ -80,7 +80,7 @@ class BlogController extends Controller
     {
         $data       = $this->blogService->getdetailbycategory($slug);
 
-        return view('frontend.page.blogCategoryPage',[
+        return view('frontend.page.blogCategoryPage', [
             'title'                  => $slug,
             'data_category'          => $data
         ]);
@@ -89,29 +89,25 @@ class BlogController extends Controller
 
     public function search(Request $request)
     {
-        $validated = $request->validate([
-            'q' => 'nullable|string'
-        ]);
+        $q = $request->validate([
+            'q' => 'nullable|string|max:100'
+        ])['q'] ?? null;
 
-       
-        if (empty($validated['q'])) {
-
-            $berita = News::orderBy('created_at', 'desc')->paginate(8);
-
-            return view('frontend.page.partial.blog_list', [
-                'berita' => $berita
-            ])->render();
-        }
+        $q = strip_tags($q);
 
         try {
-            $berita = $this->blogService->getPencarian($validated['q']);
+            $berita = empty($q)
+                ? News::orderByDesc('created_at')->paginate(8)
+                : $this->blogService->getPencarian($q);
 
-            return view('frontend.page.partial.blog_list', [
-                'berita' => $berita
-            ])->render();
-        } catch (\Exception $e) {
-            Log::error('Filter Blog Error: ' . $e->getMessage());
-            return response()->json(['error' => 'Gagal memuat data'], 500);
+            return response(
+                view('frontend.page.partial.blog_list', compact('berita'))->render()
+            )
+                ->header('Cache-Control', 'no-store')
+                ->header('X-Content-Type-Options', 'nosniff');
+        } catch (\Throwable $e) {
+            Log::error('Filter Blog Error', ['error' => $e->getMessage()]);
+            return response('', 500);
         }
     }
 }

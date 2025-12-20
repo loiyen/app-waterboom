@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\frontend;
 
-use App\Http\Controllers\Controller;
-use App\Services\EventService;
 use Illuminate\Http\Request;
+use App\Services\EventService;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 
 class EventController extends Controller
 {
@@ -39,17 +40,23 @@ class EventController extends Controller
 
     public function search(Request $request)
     {
-        $request->validate([
+        $query = $request->validate([
             'q' => 'nullable|string|max:100'
-        ]);
+        ])['q'] ?? '';
 
-        $query = trim($request->q ?? '');
+        $query = strip_tags(trim($query));
 
+        try {
+            $data_event = $this->eventservice->getPencarian($query);
 
-        $data_event = $this->eventservice->getPencarian($query);
-
-        return view('frontend.page.partial.event_list', [
-            'data_event' => $data_event
-        ]);
+            return response(
+                view('frontend.page.partial.event_list', compact('data_event'))->render()
+            )
+                ->header('Cache-Control', 'no-store')
+                ->header('X-Content-Type-Options', 'nosniff');
+        } catch (\Throwable $e) {
+            Log::error('Event search error', ['error' => $e->getMessage()]);
+            return response('', 500);
+        }
     }
 }

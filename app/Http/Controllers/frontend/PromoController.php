@@ -21,31 +21,42 @@ class PromoController extends Controller
     public function index(Request $request)
     {
         $validated = $request->validate([
-            'status' => 'nullable|string',
-            'search' => 'nullable|string',
+            'status' => 'nullable|in:all,tiket,resto',
+            'search' => 'nullable|string|max:100',
         ]);
 
-        $data = $this->promoService->getPromos(
-            $validated['status'] ?? 'all',
-            $validated['search'] ?? ''
-        );
+        $status = $validated['status'] ?? 'all';
+        $search = strip_tags(trim($validated['search'] ?? ''));
 
-        if ($request->ajax()) {
-            return view('frontend.page.partial.promo_list', [
-                'promos' => $data['promos'],
-            ])->render();
+        try {
+            $data = $this->promoService->getPromos($status, $search);
+
+            if ($request->ajax()) {
+                return response(
+                    view('frontend.page.partial.promo_list', [
+                        'promos' => $data['promos'],
+                    ])->render()
+                )
+                    ->header('Cache-Control', 'no-store')
+                    ->header('X-Content-Type-Options', 'nosniff');
+            }
+
+            return view('frontend.page.promoPage', [
+                'title'           => 'Promo || Waterboom Jogja',
+                'promos'          => $data['promos'],
+                'countByCategory' => $data['countByCategory'],
+                'totalAll'        => $data['totalAll'],
+                'status'          => $data['status'],
+                'totalFiltered'   => $data['promos']->total(),
+                'banner'          => $data['banner'],
+            ]);
+        } catch (\Throwable $e) {
+            Log::error('Promo filter error', ['error' => $e->getMessage()]);
+            abort(500);
         }
-
-        return view('frontend.page.promoPage', [
-            'title' => 'Promo || Waterboom Jogja',
-            'promos' => $data['promos'],
-            'countByCategory' => $data['countByCategory'],
-            'totalAll' => $data['totalAll'],
-            'status' => $data['status'],
-            'totalFiltered' => $data['promos']->total(),
-            'banner'        => $data['banner']
-        ]);
     }
+
+
 
     public function detailPromo($slug)
     {

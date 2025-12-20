@@ -28,12 +28,11 @@ class TiketGroupController extends Controller
 
     public function search(Request $request)
     {
-
         $validated = $request->validate([
-            'q' => 'nullable|string'
+            'q' => 'nullable|string|max:100',
         ]);
 
-        $query = $request->get('q');
+        $query = $validated['q'] ?? '';
 
         $sales = $this->groupService->getPencarian($query);
 

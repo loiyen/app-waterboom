@@ -34,7 +34,7 @@
             <div class="relative w-full md:w-96">
                 <input
                     class="w-full pl-10 pr-4 py-2 rounded-md border shadow-sm text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                    id="search-input" type="text" placeholder="Masukan nama..." />
+                    id="search-input" maxlength="100" type="text" placeholder="Masukan nama..." />
                 <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
                     <i class="fa fa-search"></i>
                 </span>
