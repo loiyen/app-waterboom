@@ -71,7 +71,7 @@
                 <a href="{{ route('event.page') }}">
                     <li
                         class="cursor-pointer font-semibold py-3 px-5 hover:text-white hover:bg-blue-500 hover:rounded-md">
-                        Acara
+                        Event
                     </li>
                 </a>
                 <a href="{{ route('promo.page') }}">
@@ -84,7 +84,7 @@
                 <a href="{{ route('blog.page') }}">
                     <li
                         class="cursor-pointer font-semibold py-3 px-5 hover:text-white hover:bg-blue-500 hover:rounded-md">
-                        Artikel & Berita
+                        Informasi & Berita
                     </li>
                 </a>
                 <li class="relative cursor-pointer hover:bg-blue-500 hover:text-white hover:rounded-md">

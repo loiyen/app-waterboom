@@ -93,35 +93,6 @@
                     });
                 }, delay);
             });
-
-            $('#load-more').on('click', function() {
-                currentPage++;
-                let query = $('#search-input').val();
-
-                $.ajax({
-                    url: "{{ route('blog.load') }}",
-                    type: 'GET',
-                    data: {
-                        page: currentPage,
-                        q: query
-                    },
-                    beforeSend: function() {
-                        $('#load-more').text('Memuat...');
-                    },
-                    success: function(response) {
-                        if ($.trim(response) === '' || response.includes('Tidak ditemukan')) {
-                            $('#load-more').text('Tidak ada lagi berita').prop('disabled',
-                                true);
-                        } else {
-                            $('#berita-container').append(response);
-                            $('#load-more').text('Muat Lebih Banyak +');
-                        }
-                    },
-                    error: function() {
-                        $('#load-more').text('Terjadi kesalahan');
-                    }
-                });
-            });
         });
     </script>
 

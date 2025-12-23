@@ -26,8 +26,12 @@ class UserActivity extends TableWidget
                 Tables\Columns\TextColumn::make('email'),
                 Tables\Columns\TextColumn::make('last_login_at')
                     ->label('Last Login')
-                    ->since()
-                    ->default('Never'),
+                    ->formatStateUsing(
+                        fn($state) =>
+                        $state
+                            ? \Carbon\Carbon::parse($state)->diffForHumans()
+                            : 'Never'
+                    ),
                 Tables\Columns\TextColumn::make('roles.name')->label('Role')->badge(),
             ]);
     }
