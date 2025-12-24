@@ -80,7 +80,6 @@ class NewsResource extends Resource
                     ->maxLength(255),
                 RichEditor::make('content')
                     ->label('Isi')
-                    ->required()
                     ->toolbarButtons([
                         'bold',
                         'italic',
@@ -104,6 +103,7 @@ class NewsResource extends Resource
                     ->label('Gambar Berita')
                     ->collection('news-images')
                     ->multiple()
+                    ->required()
                     ->image()
                     ->rules(['image', 'max:5048'])
                     ->columnSpanFull()

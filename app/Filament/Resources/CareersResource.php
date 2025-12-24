@@ -44,6 +44,7 @@ class CareersResource extends Resource
                 TextInput::make('position')
                     ->label('Posisi')
                     ->required()
+                    ->required()
                     ->maxLength(255)
                     ->live(onBlur: true)
                     ->afterStateUpdated(function ($state, callable $set) {
@@ -59,6 +60,7 @@ class CareersResource extends Resource
                     ->required(),
                 Select::make('job_type')
                     ->label('Status Perkerjaan')
+                    ->required()
                     ->options([
                         'full_time'             => 'Full_time',
                         'part_time'             => 'Part_time',

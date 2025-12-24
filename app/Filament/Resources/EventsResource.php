@@ -76,7 +76,7 @@ class EventsResource extends Resource
                     ->required(),
                 RichEditor::make('ketentuan')
                     ->label('Ketentuan')
-                    ->required()
+                    
                     ->toolbarButtons([
                         'bold',
                         'italic',
@@ -104,11 +104,13 @@ class EventsResource extends Resource
                 DatePicker::make('start_date')
                     ->label('Tanggal Mulai')
                     ->native(false)
+                    ->required()
                     ->displayFormat('d/m/Y')
                     ->format('Y-m-d'),
                 DatePicker::make('end_date')
                     ->label('Tanggal Selesai')
                     ->native(false)
+                    ->required()
                     ->displayFormat('d/m/Y')
                     ->format('Y-m-d'),
                 FileUpload::make('thumbail')
@@ -122,9 +124,11 @@ class EventsResource extends Resource
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/jpg']),
                 TextInput::make('location')
                     ->label('Lokasi')
+                    ->required()
                     ->maxLength(255),
                 TextInput::make('link')
                     ->label('Link informasi')
+                    ->required()
                     ->maxLength(255),
                 Toggle::make('is_active')
                     ->label('Aktifkan postingan?')

@@ -50,6 +50,7 @@ class SalesResource extends Resource
                 FileUpload::make('image')
                     ->label('Upload Foto')
                     ->image()
+                    ->required()
                     ->directory('uploads')
                     ->visibility('public')
                     ->maxSize(5048)

@@ -47,10 +47,12 @@ class UsersResource extends Resource
                 Forms\Components\Select::make('roles')
                     ->relationship('roles', 'name')
                     ->preload()
+                    ->required()
                     ->helperText('Pilih roles sesuai hak akses'),
                 DateTimePicker::make('email_verified_at')
                     ->label('Email Verified At')
                     ->nullable()
+                    ->required()
                     ->helperText('Kosongkan jika belum diverifikasi.'),
 
                 TextInput::make('password')

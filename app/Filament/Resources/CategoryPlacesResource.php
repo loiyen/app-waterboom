@@ -50,6 +50,7 @@ class CategoryPlacesResource extends Resource
                     ->maxLength(255),
                 Textarea::make('description')
                     ->label('Deskripsi')
+                    ->required()
                     ->columnSpanFull()
             ]);
     }

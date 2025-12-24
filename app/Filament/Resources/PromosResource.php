@@ -59,6 +59,7 @@ class PromosResource extends Resource
                     ->maxLength(255),
                 Select::make('category')
                     ->label('Kategori')
+                    ->required()
                     ->options([
                         'Tiket' => 'Tiket',
                         'Resto' => 'Resto',
@@ -114,6 +115,7 @@ class PromosResource extends Resource
                 FileUpload::make('image')
                     ->label('Upload Foto')
                     ->image()
+                    ->required()
                     ->directory('uploads')
                     ->visibility('public')
                     ->maxSize(5048)

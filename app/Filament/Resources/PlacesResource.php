@@ -91,6 +91,7 @@ class PlacesResource extends Resource
                     ->label('Gambar Tempat')
                     ->collection('places-images')
                     ->multiple()
+                    ->required()
                     ->image()
                     ->rules(['image', 'max:5048'])
                     ->columnSpanFull()

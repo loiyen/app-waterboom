@@ -14,8 +14,9 @@
             <div class="w-full flex justify-center">
                 <div>
                     <img src="{{ asset('img/logo-base.png') }}" class="w-52" alt="">
-                    
+
                 </div>
+
             </div>
             <div class="w-full flex gap-5">
                 <div class="flex-1">
@@ -32,15 +33,36 @@
                 </div>
 
                 <div class="flex-1">
-                    <a href="{{ route('promo.page') }}" class="text-sm hover:text-blue-600 font-semibold">Promo</a>
+                    <h1 class="text-sm font-semibold mt-1">Promo</h1>
+                    <ul class="text-xs space-y-1">
+                        <a href="{{ route('promo.page') }}">
+                            <li class="py-1 hover:text-blue-400 text-gray-600">
+                                Promo
+                            </li>
+                        </a>
+                    </ul>
                 </div>
 
                 <div class="flex-1">
-                    <a href="{{ route('blog.page') }}" class="text-sm hover:text-blue-600 font-semibold">Berita</a>
+                    <h1 class="text-sm font-semibold mt-1">Blog</h1>
+                    <ul class="text-xs space-y-1">
+                        <a href="{{ route('blog.page') }}">
+                            <li class="py-1 hover:text-blue-400 text-gray-600">
+                                Blog
+                            </li>
+                        </a>
+                    </ul>
                 </div>
 
                 <div class="flex-1">
-                    <a href="{{ route('group.info') }}" class="text-sm hover:text-blue-600 font-semibold">Group</a>
+                    <h1 class="text-sm font-semibold mt-1">Group</h1>
+                    <ul class="text-xs space-y-1">
+                        <a href="{{ route('group.info') }}">
+                            <li class="py-1 hover:text-blue-400 text-gray-600">
+                                Group
+                            </li>
+                        </a>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -58,6 +80,18 @@
                 <a href="#" class="hover:scale-110 transition">
                     <img src="{{ asset('img/y1.png') }}" class="w-7 h-7" alt="youtube" />
                 </a>
+            </div>
+        </div>
+        <div class="flex flex-col justify-center md:items-end items-center gap-3">
+            <h1 class="text-sm font-semibold">Alamat</h1>
+            <div class="flex gap-1">
+                <h1 class="text-xs text-gray-500 ">Jl. Jenengan Raya, Jenengan, Maguwoharjo, Kec. Depok, Kabupaten
+                    Sleman, Daerah Istimewa Yogyakarta 55281</h1>
+                <span><i class="fa fa-map text-gray-400"></i></span>
+            </div>
+            <div class="flex gap-5">
+                <h1 class="text-xs text-gray-500 ">(0274) 8722020</h1>
+                <span><i class="fa fa-phone text-gray-400"></i></span>
             </div>
         </div>
 

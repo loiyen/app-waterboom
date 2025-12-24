@@ -46,6 +46,7 @@ class GaleriResource extends Resource
                 Select::make('category')
                     ->label('Kategori')
                     ->preload()
+                    ->required()
                     ->native()
                     ->placeholder('Pilih Kategori')
                     ->options([
@@ -59,10 +60,12 @@ class GaleriResource extends Resource
                         'promo' => 'Promo',
                     ]),
                 TextInput::make('title')
-                    ->label('Judul'),
+                    ->label('Judul')
+                    ->required(),
                 FileUpload::make('image')
                     ->label('Upload Foto')
                     ->image()
+                    ->required()
                     ->disk('public')          
                     ->directory('galeri')
                     ->visibility('public')
