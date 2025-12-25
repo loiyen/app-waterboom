@@ -62,13 +62,13 @@
 
                 <div class="border border-gray-200 shadow-lg rounded-xl p-6 bg-gradient-to-br from-white to-gray-50 mb-10">
                    
-                    <h1 class="font-bold text-sm md:text-xl mb-6 text-center">
+                    <h1 class="font-bold text-sm md:text-base mb-6 text-center">
                         Periode Promo
                     </h1>
 
                     <div
                         class="flex justify-between items-center mb-4 p-4 ">
-                        <div class="flex items-center gap-2 ">
+                        <div class="flex items-center gap-2 text-gray-700 ">
                             <i class="fa fa-calendar text-xl"></i>
                             <span class="font-medium text-xs md:text-sm">Periode Pembelian</span>
                         </div>
@@ -80,7 +80,7 @@
                     <!-- Periode Kunjungan -->
                     <div
                         class="flex justify-between items-center mb-4 p-4 ">
-                        <div class="flex items-center gap-2 text-blue-700">
+                        <div class="flex items-center gap-2 text-gray-700">
                             <i class="fa fa-calendar text-xl"></i>
                             <span class="font-medium text-xs md:text-sm">Periode Kunjungan</span>
                         </div>
@@ -106,7 +106,7 @@
                         <p>{!! Purifier::clean($promo->description) !!}</p>
                     </div>
                 </div>
-                <div class="flex flex-col md:flex-row pb-2 text-gray-700 items-center gap-5">
+                <div class="flex flex-col md:flex-row text-gray-700 items-center gap-5">
                     <h1 class="text-sm text-gray-500">Kunjungi media sosial kami : </h1>
                     <div class="flex flex-wrap items-center gap-2 text-xs">
                         @php
@@ -124,7 +124,7 @@
                         </a>
                     </div>
                 </div>
-                <div>
+                <div class="pt-5">
                     <h1 class="border"></h1>
                 </div>
                 <div class="">
