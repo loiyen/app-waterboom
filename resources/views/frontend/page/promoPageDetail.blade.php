@@ -59,16 +59,16 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="border border-gray-200 shadow-lg rounded-xl p-6 bg-gradient-to-br from-white to-gray-50 mb-6">
+
+                <div class="border border-gray-200 shadow-lg rounded-xl p-6 bg-gradient-to-br from-white to-gray-50 mb-10">
                    
-                    <h1 class="font-extrabold text-sm md:text-xl  text-purple-600 mb-6 text-center">
+                    <h1 class="font-bold text-sm md:text-xl mb-6 text-center">
                         Periode Promo
                     </h1>
 
                     <div
-                        class="flex justify-between items-center mb-4 p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition">
-                        <div class="flex items-center gap-2 text-purple-700">
+                        class="flex justify-between items-center mb-4 p-4 ">
+                        <div class="flex items-center gap-2 ">
                             <i class="fa fa-calendar text-xl"></i>
                             <span class="font-medium text-xs md:text-sm">Periode Pembelian</span>
                         </div>
@@ -79,7 +79,7 @@
 
                     <!-- Periode Kunjungan -->
                     <div
-                        class="flex justify-between items-center mb-4 p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition">
+                        class="flex justify-between items-center mb-4 p-4 ">
                         <div class="flex items-center gap-2 text-blue-700">
                             <i class="fa fa-calendar text-xl"></i>
                             <span class="font-medium text-xs md:text-sm">Periode Kunjungan</span>
@@ -89,7 +89,7 @@
                         </div>
                     </div>
 
-                    <div class="flex justify-between items-center p-4 bg-pink-50 rounded-lg hover:bg-pink-100 transition">
+                    <div class="flex justify-between items-center p-4">
                         <div class="flex items-center gap-2 text-pink-600">
                             <i class="fa fa-percent text-xl"></i>
                             <span class="font-medium text-xs md:text-sm">Diskon</span>
@@ -115,16 +115,18 @@
                         @endphp
 
                         <a href="https://www.instagram.com/username_ig" target="_blank"
-                            class="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 font-semibold text-white px-3 py-2 rounded hover:opacity-90 transition">
+                            class="font-semibold text-gray-500 border px-3 py-2 rounded hover:opacity-90 ">
                             <i class="fab fa-instagram"></i> WaterboomJogja
                         </a>
                         <a href="https://www.tiktok.com/@username_tiktok" target="_blank"
-                            class="bg-black text-white px-3 py-2 rounded flex items-center font-semibold justify-center hover:bg-gray-800 transition">
+                            class=" text-gray-500 px-3 py-2 rounded flex items-center border font-semibold justify-center ">
                             <i class="fab fa-tiktok text-white-700 mr-2"></i> TikTok
                         </a>
                     </div>
                 </div>
-                <hr>
+                <div>
+                    <h1 class="border"></h1>
+                </div>
                 <div class="">
                     <h1 class=" text-sm md:text-base py-2 font-semibold text-gray-700">Galeri</h1>
                     <div class="mb-2 py-2" onclick="showImageModal('{{ asset('storage/' . $promo->image) }}')">
