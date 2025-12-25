@@ -106,7 +106,7 @@
                         <p>{!! Purifier::clean($promo->description) !!}</p>
                     </div>
                 </div>
-                <div class="flex flex-col md:flex-row text-gray-700 items-center gap-5">
+                <div class="flex flex-col md:flex-row mb-10 text-gray-700 items-center gap-5">
                     <h1 class="text-sm text-gray-500">Kunjungi media sosial kami : </h1>
                     <div class="flex flex-wrap items-center gap-2 text-xs">
                         @php
@@ -124,9 +124,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="pt-5">
-                    <h1 class="border"></h1>
-                </div>
+               
                 <div class="">
                     <h1 class=" text-sm md:text-base py-2 font-semibold text-gray-700">Galeri</h1>
                     <div class="mb-2 py-2" onclick="showImageModal('{{ asset('storage/' . $promo->image) }}')">
