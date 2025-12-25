@@ -3,10 +3,7 @@
     @include('frontend.partial.navbar')
 
     <div class="container mx-auto max-w-6xl md:mt-32 mt-24 mb-10">
-        {{-- <div class="mb-5">
-            <img src="{{ $detail_data->getLastMediaUrl('places-images') }}" class="w-full md:h-80 object-cover"
-                alt="{{ $detail_data->title }}" />
-        </div> --}}
+
         <div class="mb-5">
             <div class="text-start mb-5 flex md:justify-start justify-center text-gray-700">
                 <h1 class="hover:text-blue-700 text-xs cursor-pointer">Beranda</h1>
@@ -65,9 +62,12 @@
                     <div class="flex flex-col">
                         <div class="w-full mb-3 ">
                             <img src="{{ $detail_data->getFirstMediaUrl('places-images') }}"
-                                class="w-full md:h-80 object-cover rounded-md" alt="{{ $detail_data->title }}" />
+                                class="w-full md:h-80 object-cover rounded-md"
+                                onclick="showImageModal('{{ $detail_data->getFirstMediaUrl('places-images') }}')"
+                                alt="{{ $detail_data->title }}" />
+
                         </div>
-                        <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+                        {{-- <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
                             @foreach ($media_data as $media)
                                 <div class="w-full h-40 md:h-48 cursor-pointer" onclick="showImageModal('{{ $media->getUrl() }}')">
                                     <img src="{{ $media->getUrl() }}"
@@ -75,7 +75,7 @@
                                         alt="{{ $media->name }}">
                                 </div>
                             @endforeach
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
