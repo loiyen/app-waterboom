@@ -59,6 +59,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="border border-gray-200 shadow-lg rounded-xl p-6 bg-gradient-to-br from-white to-gray-50 mb-6">
                    
                     <h1 class="font-extrabold text-sm md:text-xl  text-purple-600 mb-6 text-center">

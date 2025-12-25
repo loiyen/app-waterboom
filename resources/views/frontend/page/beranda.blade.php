@@ -2,11 +2,11 @@
 
 @section('container')
     @include('frontend.partial.navbar')
-    <div class="container mx-auto max-w-6xl px-4 mb-10 md:mb-10 lg:mt-28 mt-24">
+    <div class="container mx-auto max-w-6xl px-4 mb-10 md:mb-24 lg:mt-28 mt-24">
         <div class="mb-14">
-            <div class="w-full h-64 md:h-44 object-cover border shadow-md rounded-md">
+            <div class="w-full h-64 md:h-44 overflow-hidden  relative group border shadow-md rounded-md">
                 <img src="{{ optional($slider->first())->image ? asset('storage/' . optional($slider->first())->image) : asset('no-image.jpg') }}"
-                    class="w-full h-full object-cover rounded-md" alt="">
+                    class="w-full h-full object-cover rounded-md bject-cover rounded-t-md transition-transform duration-500 group-hover:scale-110" alt="">
 
             </div>
         </div>
@@ -70,7 +70,6 @@
                     </div>
                 </a>
             </div>
-
         </div>
 
         {{-- <div class="swiper default-carousel relative">
@@ -133,7 +132,7 @@
         </div>
     </div> --}}
 
-    <div class="container mx-auto max-w-6xl px-4 md:mb-24" data-aos="fade-up" data-aos-anchor-placement="top-center">
+    <div class="container mx-auto max-w-6xl px-4 mb-10 md:mb-24" data-aos="fade-up" data-aos-anchor-placement="top-center">
         <div class="w-full mb-5 gap-2 flex justify-between items-center">
             <div>
                 <h1 class="text-2xl md:text-3xl text-blue-800 font-bold">
@@ -196,7 +195,7 @@
         </div>
     </div> --}}
 
-    <div class="container mx-auto max-w-6xl px-4 md:mb-24" data-aos="fade-up" data-aos-anchor-placement="top-center">
+    <div class="container mx-auto max-w-6xl px-4 mb-10 md:mb-24 " data-aos="fade-up" data-aos-anchor-placement="top-center">
         <div class="w-full mb-5 gap-2 flex justify-between items-center">
             <div>
                 <h1 class="text-2xl md:text-3xl text-blue-800 font-bold">
@@ -326,11 +325,12 @@
             </div>
         </div>
     </div>
+
     <div class="container mx-auto max-w-6xl px-4 mb-6 md:mb-10" data-aos="fade-up"
         data-aos-anchor-placement="top-center">
         <div class="w-full px-2 py-5 flex justify-center">
             <iframe class="w-full md:w-full h-full md:h-96 rounded-lg shadow-md"
-                src="https://www.youtube.com/embed/U5BJckX4ADw?si=K9XoJgNvrWdqJgCZ" title="YouTube video player"
+                src="https://www.youtube.com/embed/UnbFygrV0f4?si=qI4ooO1cDBYdy24J" title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

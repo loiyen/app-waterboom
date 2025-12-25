@@ -8,6 +8,7 @@
     <title>{{ $title }}</title>
     <link rel="icon" type="image/png" href="{{ asset('img/logo-base.png') }}">
     @vite(['resources/css/app.css'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @include('frontend.partial.metapixel')
 
@@ -88,12 +89,12 @@
             document.addEventListener("DOMContentLoaded", function() {
                 Swal.fire({
                     text: '{{ session('kosong') }}',
-                    imageUrl: '{{ asset('img/cart.png') }}', 
+                    imageUrl: '{{ asset('img/cart.png') }}',
                     imageWidth: 120,
                     imageHeight: 120,
                     imageAlt: 'Keranjang kosong',
                     confirmButtonText: 'OK',
-                    confirmButtonColor: '#2563eb', 
+                    confirmButtonColor: '#2563eb',
                     background: '#ffffff',
                     backdrop: `
                     rgba(0,0,0,0.4)
@@ -180,7 +181,7 @@
     </script>
 
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </body>
 
 </html>
