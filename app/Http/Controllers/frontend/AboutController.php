@@ -39,6 +39,7 @@ class AboutController extends Controller
         $data_loker = $this->aboutService->get_data_loker();
 
         $data_banner = $this->aboutService->get_banner();
+       
 
         return view('frontend.page.aboutCareersPage', [
             'title'             => 'Karir || Waterboom Jogja',
