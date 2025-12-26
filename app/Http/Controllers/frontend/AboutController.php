@@ -43,7 +43,7 @@ class AboutController extends Controller
         return view('frontend.page.aboutCareersPage', [
             'title'             => 'Karir || Waterboom Jogja',
             'data_loker'        =>  $data_loker,
-            'banner'       => $data_banner
+            'banner'            => $data_banner['banner']
         ]);
     }
 
