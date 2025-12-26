@@ -105,8 +105,10 @@ class NewsResource extends Resource
                     ->multiple()
                     ->required()
                     ->image()
-                    ->rules(['image', 'max:5048'])
+                    ->maxSize(10240)
+                    ->rules(['image', 'max:10240'])
                     ->columnSpanFull()
+                    ->helperText('Maksimal : 10 MB')
                     ->preserveFilenames(),
                 Toggle::make('is_active')
                     ->label('Aktifkan postingan?')

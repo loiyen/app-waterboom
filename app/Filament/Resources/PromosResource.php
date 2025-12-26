@@ -118,9 +118,9 @@ class PromosResource extends Resource
                     ->required()
                     ->directory('uploads')
                     ->visibility('public')
-                    ->maxSize(5048)
+                    ->maxSize(10240)
                     ->columnSpanFull()
-                    ->helperText('Maksimal : 5 MB')
+                    ->helperText('Maksimal : 10 MB')
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/jpg']),
                 Toggle::make('is_active')
                     ->label('Aktifkan postingan?')
