@@ -3,13 +3,13 @@
 @section('container')
     @include('frontend.partial.navbar')
     <div class="container mx-auto max-w-6xl px-4 mb-10 md:mb-24 lg:mt-28 mt-24">
-        <div class="mb-14">
-            <div class="w-full h-64 md:h-44 overflow-hidden  relative group border shadow-md rounded-md">
-                <img src="{{ optional($slider->first())->image ? asset('storage/' . optional($slider->first())->image) : asset('no-image.jpg') }}"
-                    class="w-full h-full object-cover rounded-md bject-cover rounded-t-md transition-transform duration-500 group-hover:scale-110" alt="">
+            <div class="mb-14">
+                <div class="w-full h-64 md:h-44 overflow-hidden  relative group border shadow-md rounded-md">
+                    <img src="{{ optional($slider->first())->image ? asset('storage/' . optional($slider->first())->image) : asset('no-image.jpg') }}"
+                        class="w-full h-full object-cover rounded-md bject-cover rounded-t-md transition-transform duration-500 group-hover:scale-110" alt="">
 
+                </div>
             </div>
-        </div>
 
         <div class="mb-5">
             <div class="w-full flex gap-2 justify-between items-center">

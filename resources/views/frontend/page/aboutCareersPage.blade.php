@@ -5,7 +5,7 @@
 
     <div class="container mx-auto max-w-6xl lg:mt-32 mt-20 mb-10">
         <div class="mb-5">
-            <img src="{{ asset('img/img.webp') }}" class="w-full md:h-48 object-cover rounded-md" alt="" />
+           <img src="{{ optional($banner->first())->image ? asset('storage/' . optional($banner->first())->image) : asset('notfon.png') }}" class="w-full md:h-80 object-cover" alt="" />
         </div>
         <div class="text-start px-4 flex justify-center md:justify-start text-gray-700">
             <a href="/">
@@ -16,9 +16,7 @@
                     <i class="fa fa-angle-right text-gray-400 px-2"></i> Careers
                 </h1>
             </a>
-            <h1 class="text-xs font-semibold">
-                <i class="fa fa-angle-right text-gray-400 px-2"></i> Careers
-            </h1>
+            
         </div>
     </div>
 

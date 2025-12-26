@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Abouts;
 use App\Models\Careers;
+use App\Models\Galleries;
 
 class AboutService
 {
@@ -20,12 +21,20 @@ class AboutService
             'misi'          => $misi,
             'feature'       => $feature
         ];
-
     }
 
     public function get_data_loker()
     {
         return Careers::latest()->get();
+    }
+
+    public function get_banner()
+    {
+        $banner = Galleries::where('category', 'tiket')->where('is_active', 1)->get();
+
+        return [
+            'banner' => $banner
+        ];
     }
 
     public function detail_data_loker($slug)
