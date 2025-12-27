@@ -40,28 +40,42 @@ class BlogService
 
     public function getdetailbycategory(string $slug)
     {
-        $news_by_category = Categorynews::where('slug', $slug)->firstOrFail();
+        $category = Categorynews::where('slug', $slug)->first();
 
-        return $news_by_category->news()
+        if (!$category) {
+            return collect();
+        }
+
+        return $category->news()
             ->where('is_active', 1)
             ->latest()
             ->paginate(6);
     }
 
+
     public function getDetail($slug)
     {
-        $news_other = News::with('user')->where('is_active', 1)
+        $news_other = News::with('user')
+            ->where('is_active', 1)
             ->inRandomOrder()
             ->limit(4)
             ->get();
 
-        $data_detail     = News::with('user')->where('slug', $slug)->firstOrFail();
+        $data_detail = News::with('user')
+            ->where('slug', $slug)
+            ->where('is_active', 1)
+            ->first();
+
+        if (!$data_detail) {
+            return null;
+        }
 
         return [
-            'detail'                => $data_detail,
-            'news_other'         => $news_other,
+            'detail'      => $data_detail,
+            'news_other'  => $news_other,
         ];
     }
+
 
     public function getPencarian($keyword)
     {

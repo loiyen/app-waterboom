@@ -17,7 +17,7 @@
                                         <h1 class="font-bold text-center mb-2 px-3">
                                             {{ $item->title }}
                                         </h1>
-                        
+
                                     </span>
                                 </div>
                             </div>
@@ -149,32 +149,32 @@
 
     </div>
 
-    {{-- <script>
-        $(document).ready(function() {
 
+    <script>
+        $(document).ready(function() {
             let typingTimer;
             let delay = 500;
             let isLoading = false;
 
-            $('#search-input').on('keypress', function(e) {
+            $('#search-input').on('keypress', e => {
                 if (e.which === 13) e.preventDefault();
             });
 
-
             $('#search-input').on('keyup', function() {
-
                 clearTimeout(typingTimer);
                 let query = $(this).val().trim();
-
-
-                if (query === "") {
-                    $('#berita-container').html(response);
-                    return;
-                }
 
                 typingTimer = setTimeout(function() {
                     if (isLoading) return;
                     isLoading = true;
+
+                    if (query === "") {
+                        $.get("{{ route('blog.search') }}", function(response) {
+                            $('#berita-container').html(response);
+                            isLoading = false;
+                        });
+                        return;
+                    }
 
                     $.ajax({
                         url: "{{ route('blog.search') }}",
@@ -182,8 +182,7 @@
                         data: {
                             q: query
                         },
-
-                        beforeSend: function() {
+                        beforeSend() {
                             $('#berita-container').html(`
                         <div class="flex justify-center py-10">
                             <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
@@ -191,16 +190,13 @@
                         <p class="text-center text-gray-500 mt-3">Memuat data...</p>
                     `);
                         },
-
-                        success: function(response) {
+                        success(response) {
                             $('#berita-container').html(response);
                         },
-
-                        complete: function() {
+                        complete() {
                             isLoading = false;
                         },
-
-                        error: function() {
+                        error() {
                             $('#berita-container').html(`
                         <p class="text-red-500 p-4 text-center">
                             Terjadi kesalahan memuat data.
@@ -208,80 +204,7 @@
                     `);
                         }
                     });
-
                 }, delay);
-
-            });
-
-            // Pagination AJAX (TETAP)
-            $(document).on('click', '.pagination a', function(e) {
-                e.preventDefault();
-                let url = $(this).attr('href');
-
-                $.get(url, function(response) {
-                    let html = $(response).find('#berita-container').html();
-                    $('#berita-container').html(html);
-                });
-            });
-
-        });
-    </script> --}}
-
-    <script>
-        $(document).ready(function() {
-
-            let typingTimer;
-            let delay = 500;
-            let isLoading = false;
-
-            $('#search-input').on('keypress', function(e) {
-                if (e.which === 13) e.preventDefault();
-            });
-
-            $('#search-input').on('keyup', function() {
-
-                clearTimeout(typingTimer);
-                let query = $(this).val().trim();
-
-                typingTimer = setTimeout(function() {
-                    if (isLoading) return;
-                    isLoading = true;
-
-                    $.ajax({
-                        url: "{{ route('blog.search') }}",
-                        type: 'GET',
-                        data: {
-                            q: query
-                        },
-
-                        beforeSend: function() {
-                            $('#berita-container').html(`
-                    <div class="flex justify-center py-10">
-                        <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
-                    </div>
-                    <p class="text-center text-gray-500 mt-3">Memuat data...</p>
-                `);
-                        },
-
-                        success: function(response) {
-                            $('#berita-container').html(response);
-                        },
-
-                        complete: function() {
-                            isLoading = false;
-                        },
-
-                        error: function() {
-                            $('#berita-container').html(`
-                    <p class="text-red-500 p-4 text-center">
-                        Terjadi kesalahan memuat data.
-                    </p>
-                `);
-                        }
-                    });
-
-                }, delay);
-
             });
 
             $(document).on('click', '.pagination a', function(e) {
@@ -289,13 +212,12 @@
                 let url = $(this).attr('href');
 
                 $.get(url, function(response) {
-                    let html = $(response).find('#berita-container').html();
-                    $('#berita-container').html(html);
+                    $('#berita-container').html(response);
                 });
             });
-
         });
     </script>
+
 
     @include('frontend.partial.footer')
 @endsection

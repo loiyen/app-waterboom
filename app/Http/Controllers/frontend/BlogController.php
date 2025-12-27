@@ -34,47 +34,55 @@ class BlogController extends Controller
 
     public function detail($slug, TfidfService $tfidfService)
     {
-        try {
-            $data = $this->blogService->getDetail($slug);
+        $data = $this->blogService->getDetail($slug);
 
-            $currentNews = $data['detail'];
-            $currentId   = $currentNews->id;
-
-            $allNews = News::where('id', '!=', $currentId)->get();
-
-            $documents = $allNews->pluck('content')->toArray();
-
-            $tfidfDocs = $tfidfService->compute($documents);
-
-            $currentTfidf = $tfidfService->compute([$currentNews->content])[0];
-
-            $similarity = [];
-            foreach ($tfidfDocs as $index => $vec) {
-                $similarity[$index] = $tfidfService->cosineSimilarity($currentTfidf, $vec);
-            }
-
-            arsort($similarity);
-
-            $related = collect($similarity)
-                ->take(5)
-                ->map(function ($score, $index) use ($allNews) {
-                    return [
-                        'news'  => $allNews[$index],
-                        'score' => $score
-                    ];
-                });
-
-            return view('frontend.page.blogPageDetail', [
-                'title'         => 'Detail || Waterboom Jogja',
-                'berita'        => $currentNews,
-                'berita_lain'   => $data['news_other'],
-                'related_news'  => $related,
-            ]);
-        } catch (\Exception $e) {
-            Log::error('Gagal memuat detail blog: ' . $e->getMessage());
+        if (!$data || empty($data['detail'])) {
             abort(404, 'Berita tidak ditemukan');
         }
+
+        $currentNews = $data['detail'];
+        $currentId   = $currentNews->id;
+
+        $allNews = News::where('id', '!=', $currentId)
+            ->where('is_active', 1)
+            ->whereNotNull('content')
+            ->get();
+
+        $related = collect();
+
+        if ($allNews->count() > 0 && !empty($currentNews->content)) {
+            try {
+                $documents     = $allNews->pluck('content')->toArray();
+                $tfidfDocs     = $tfidfService->compute($documents);
+                $currentTfidf  = $tfidfService->compute([$currentNews->content])[0];
+
+                $similarity = [];
+                foreach ($tfidfDocs as $index => $vec) {
+                    $similarity[$index] =
+                        $tfidfService->cosineSimilarity($currentTfidf, $vec);
+                }
+
+                arsort($similarity);
+
+                $related = collect($similarity)
+                    ->take(5)
+                    ->map(fn($score, $index) => [
+                        'news'  => $allNews[$index],
+                        'score' => $score
+                    ]);
+            } catch (\Throwable $e) {
+                Log::warning('TF-IDF gagal', ['error' => $e->getMessage()]);
+            }
+        }
+
+        return view('frontend.page.blogPageDetail', [
+            'title'         => 'Detail || Waterboom Jogja',
+            'berita'        => $currentNews,
+            'berita_lain'   => $data['news_other'],
+            'related_news'  => $related,
+        ]);
     }
+
 
     public function detail_by_category($slug)
     {
