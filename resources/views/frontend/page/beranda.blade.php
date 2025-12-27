@@ -330,7 +330,7 @@
         data-aos-anchor-placement="top-center">
         <div class="w-full px-2 py-5 flex justify-center">
             <iframe class="w-full md:w-full h-full md:h-96 rounded-lg shadow-md"
-                src="https://www.youtube.com/embed/UnbFygrV0f4?si=qI4ooO1cDBYdy24J" title="YouTube video player"
+                 loading="lazy" src="https://www.youtube-nocookie.com/embed/UnbFygrV0f4?si=qI4ooO1cDBYdy24J" title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
